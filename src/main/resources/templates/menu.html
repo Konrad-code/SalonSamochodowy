@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Salon Samochodowy Menu</title>
+<link rel="stylesheet" type="text/css" href="Style.css">
+</head>
+<body>
+
+	<table id = "customers">
+		<thead>
+			<tr>
+				<th>Nazwa</th>
+				<th>Cena</th>
+				<th>Czy auto jest wypozyczone</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="samochod: ${samochod}">
+				<td><span th:text="${samochod.nazwa}">Nazwa</span></td>
+				<td><span th:text="${sushi.cena}">Cena</span></td>
+				<td><span th:text="${samochod.czyWypozyczony}">Czy auto jest wypozyczone</span></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>
