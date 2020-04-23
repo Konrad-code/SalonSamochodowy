@@ -8,11 +8,11 @@
 		<version>2.2.6.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.piotrolot1</groupId>
-	<artifactId>Sushi</artifactId>
+	<groupId>com.Konrad-Code</groupId>
+	<artifactId>SalonSamochodowy</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Sushi</name>
-	<description>Demo project for Sushi</description>
+	<name>SalonSamochodowy</name>
+	<description>Demo project for Car rental</description>
 
 	<properties>
 		<java.version>1.8</java.version>

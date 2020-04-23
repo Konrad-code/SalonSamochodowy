@@ -3,25 +3,28 @@ package com.konrad_janek.SalonSamochodowy.Data;
 import com.konrad_janek.SalonSamochodowy.Accounts.Account;
 
 public class Samochod {
-	private String nazwa;
+	private String marka;
+	private String model;
 	private int cena;
 	private boolean czyWypozyczony;
 	int dataOddania;
 	private Account ktoWypozyczyl;
+
 	
-	public Samochod(String nazwa, int cena, boolean czyWypozyczony) {
+	public Samochod(String marka, String model, int cena, boolean czyWypozyczony) {
 		super();
-		this.nazwa = nazwa;
+		this.marka = marka;
+		this.model = model;
 		this.cena = cena;
 	}
 
-	public String getNazwa() {
-		return nazwa;
-	}
+	public void setMarka(String marka) {this.marka = marka;}
 
-	public void setNazwa(String nazwa) {
-		this.nazwa = nazwa;
-	}
+	public String getMarka() {return marka;}
+
+	public String getModel() {return model;}
+
+	public void setModel(String model) {this.model = model;}
 
 	public int getCena() {
 		return cena;

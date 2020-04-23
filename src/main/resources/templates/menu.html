@@ -2,15 +2,28 @@
 <html xmlns:th="http:www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Salon Samochodowy Menu</title>
-<link rel="stylesheet" type="text/css" href="Style.css">
+<title>Nasze Auta</title>
+	<link rel="stylesheet" type="text/css" href="Style.css">
+	<link rel="stylesheet" type="text/css" href="sidenav.css">
+	<script src="animacjaPaska.js"></script>
 </head>
 <body>
 
-	<table id = "customers">
+<div id="mySidenav" class="sidenav">
+	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	<a href="glowna.html">O nas</a>
+	<a href="menu.html">Nasze Auta</a>
+	<a href="login.html">Zaloguj się</a>
+</div>
+
+<span style="font-size:30px;color: #FFFF;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+
+
+<table id = "customers">
 		<thead>
 			<tr>
-				<th>Nazwa</th>
+				<th>Marka</th>
+				<th>Model</th>
 				<th>Cena</th>
 				<th>Czy auto jest wypozyczone</th>
 			</tr>
@@ -18,7 +31,8 @@
 
 		<tbody>
 			<tr th:each="samochod: ${samochod}">
-				<td><span th:text="${samochod.nazwa}">Nazwa</span></td>
+				<td><span th:text="${samochod.marka}">marka</span></td>
+				<td><span th:text="${samochod.model}">model</span></td>
 				<td><span th:text="${sushi.cena}">Cena</span></td>
 				<td><span th:text="${samochod.czyWypozyczony}">Czy auto jest wypozyczone</span></td>
 			</tr>

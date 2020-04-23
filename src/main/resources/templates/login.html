@@ -2,16 +2,31 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="StyleLogin.css">
-<title>Strona do logowania</title>
+	<link rel="stylesheet" type="text/css" href="StyleLogin.css">
+	<link rel="stylesheet" type="text/css" href="sidenav.css">
+	<script src="animacjaPaska.js"></script>
+<title>Zaloguj się</title>
 </head>
 <body>
 
+<div id="mySidenav" class="sidenav">
+	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	<a href="glowna.html">O nas</a>
+	<a href="menu.html">Nasze Auta</a>
+	<a href="login.html">Zaloguj się</a>
+</div>
+
+<span style="font-size:30px;color: #FFFF;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+
+
+
 	<form action="login" method="post">
 		<div class="container">
-			<label for="uname"><b>Login</b></label> <input type="text"
-				placeholder="Enter Username" name="Login" required> <label
-				for="psw"><b>Hasło:</b></label> <input type="password"
+			<label for="uname">
+				<b style="color: #FFFF" >Login</b>
+			</label>
+			<input type="text" placeholder="Enter Username" name="Login" required > <label
+				for="psw"><b style="color: #FFFF">Hasło:</b></label> <input type="password"
 				placeholder="Enter Password" name="Haslo" required>
 
 			<button type="submit">Zaloguj</button>
