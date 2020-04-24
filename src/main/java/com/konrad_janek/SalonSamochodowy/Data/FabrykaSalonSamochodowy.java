@@ -15,7 +15,7 @@ public class FabrykaSalonSamochodowy {
 		listaSamochody.add(new Samochod("Skoda", "Fabia", 15, false));
 		listaSamochody.add(new Samochod("Ford", "Ka", 15, false));
 		listaSamochody.add(new Samochod("Renault", "Twingo", 15, false));
-		listaSamochody.add(new Samochod("Citroen", "3DS", 15, false));
+		listaSamochody.add(new Samochod("Citroen", "DS3", 15, false));
 		listaSamochody.add(new Samochod("Mercedes", "Klassa C", 50, false));
 		listaSamochody.add(new Samochod("Bentley", "Continental", 70, false));
 		listaSamochody.add(new Samochod("BMW", "7 Series  ", 50, false));
