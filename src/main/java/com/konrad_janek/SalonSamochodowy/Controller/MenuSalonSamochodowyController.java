@@ -9,11 +9,11 @@ import com.konrad_janek.SalonSamochodowy.Data.FabrykaSalonSamochodowy;
 @Controller
 public class MenuSalonSamochodowyController {
 
-	FabrykaSalonSamochodowy fabrykaSalonSamochodowy = new FabrykaSalonSamochodowy();
+	FabrykaSalonSamochodowy fabrykaSalonSamochodowy = FabrykaSalonSamochodowy.getInstance();
 	
 	@GetMapping("/menu")
 	public String menuSushiPage(Model model) {
-		model.addAttribute("Lista aut w wypozyczalni", fabrykaSalonSamochodowy.getListaSamochody());
+		model.addAttribute("samochody", fabrykaSalonSamochodowy.getListaSamochody());
 		return "menu";
 	}
 }

@@ -19,22 +19,22 @@
 <span style="font-size:30px;color: #FFFF;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 
 
-<table id = "customers">
+	<table id = "customers">
 		<thead>
 			<tr>
 				<th>Marka</th>
 				<th>Model</th>
 				<th>Cena</th>
-				<th>Czy auto jest wypozyczone</th>
+				<th>Kaucja</th>
 			</tr>
 		</thead>
 
 		<tbody>
-			<tr th:each="samochod: ${samochod}">
-				<td><span th:text="${samochod.marka}">marka</span></td>
-				<td><span th:text="${samochod.model}">model</span></td>
-				<td><span th:text="${sushi.cena}">Cena</span></td>
-				<td><span th:text="${samochod.czyWypozyczony}">Czy auto jest wypozyczone</span></td>
+			<tr th:each="samochody: ${samochody}">
+				<td><span th:text="${samochody.marka}">marka</span></td>
+				<td><span th:text="${samochody.model}">model</span></td>
+				<td><span th:text="${samochody.cena}">Cena</span></td>
+				<td><span th:text="${samochody.kaucja}">Kaucja</span></td>
 			</tr>
 		</tbody>
 	</table>

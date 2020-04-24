@@ -4,18 +4,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import com.konrad_janek.SalonSamochodowy.Accounts.Account;
+import com.konrad_janek.SalonSamochodowy.Accounts.CustomerDAO;
 
 @Controller
 public class AdminPanelController {
 
 	@GetMapping("/adminPanel")
-	public String adminPanelPage(@ModelAttribute Account account) {
-		if(account == null)
+	public String adminPanelPage(@ModelAttribute CustomerDAO customer) {
+		if(customer == null)
 			return "login";
-		if(account.getLogin().equals("ABCD") && account.getHaslo().equals("qwertyuiop"))
+		if(customer.isRoot())
 			return "adminPanel";
 		return "login";
 	}
-	
 }
