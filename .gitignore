@@ -20,7 +20,7 @@ target/
 *.ipr
 
 ### SQL Credentials ###
-*.txt
+sql/SalonSamochodowy_properties.txt
 
 ### MVC ###
 /.mvn/
