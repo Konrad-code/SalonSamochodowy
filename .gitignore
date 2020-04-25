@@ -20,7 +20,7 @@ target/
 *.ipr
 
 ### SQL ###
-sql/Sa*
+/sql/
 
 ### MVC ###
 /.mvn/
