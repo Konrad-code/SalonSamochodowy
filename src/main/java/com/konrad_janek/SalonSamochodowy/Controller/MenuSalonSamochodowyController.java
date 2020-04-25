@@ -12,7 +12,7 @@ public class MenuSalonSamochodowyController {
 	FabrykaSalonSamochodowy fabrykaSalonSamochodowy = FabrykaSalonSamochodowy.getInstance();
 	
 	@GetMapping("/menu")
-	public String menuSushiPage(Model model) {
+	public String listaAutPage(Model model) {
 		model.addAttribute("samochody", fabrykaSalonSamochodowy.getListaSamochody());
 		return "menu";
 	}
