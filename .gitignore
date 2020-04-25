@@ -20,7 +20,7 @@ target/
 *.ipr
 
 ### SQL ###
-/sql/SalonSamochodowy_properties*
+sql/SalonSamochodowy_properties
 
 ### MVC ###
 /.mvn/
