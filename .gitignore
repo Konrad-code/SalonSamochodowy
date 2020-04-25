@@ -19,8 +19,8 @@ target/
 *.iml
 *.ipr
 
-### SQL ###
-/sql/
+### SQL Credentials ###
+*.txt
 
 ### MVC ###
 /.mvn/

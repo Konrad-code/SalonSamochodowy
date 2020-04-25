@@ -21,7 +21,7 @@ public class ConnectDatabase implements IConnectDatabase{
 	public void loadConnection() {
 		Properties properties = new Properties();
 		try {
-			properties.load(new FileInputStream("sql\\SalonSamochodowy_properties"));
+			properties.load(new FileInputStream("sql\\SalonSamochodowy_properties.txt"));
 		
 			final String LOGIN = properties.getProperty("login");
 			final String PASSWORD = properties.getProperty("password");

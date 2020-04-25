@@ -1,4 +1,0 @@
-login=postgres
-password=maxi55
-url=jdbc:postgresql://localhost/salon
-jdbc_driver=org.postgresql.Driver
