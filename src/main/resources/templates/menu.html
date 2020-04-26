@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="Style.css">
 	<link rel="stylesheet" type="text/css" href="sidenav.css">
 	<script src="animacjaPaska.js"></script>
+	<script src="menu.js"></script>
 </head>
 <body>
 
@@ -27,16 +28,19 @@
 				<th>Model</th>
 				<th>Cena</th>
 				<th>Kaucja</th>
+				<th>Więcej</th>
 			</tr>
 		</thead>
 
 		<tbody>
-			<tr th:each="samochody: ${samochody}">
-				<td><span th:text="${samochody.marka}">marka</span></td>
-				<td><span th:text="${samochody.model}">model</span></td>
-				<td><span th:text="${samochody.cena}">Cena</span></td>
-				<td><span th:text="${samochody.kaucja}">Kaucja</span></td>
-			</tr>
+			
+				<tr th:each="samochody: ${samochody}">
+					<td><span th:text="${samochody.marka}">marka</span></td>
+					<td><span th:text="${samochody.model}">model</span></td>
+					<td><span th:text="${samochody.cena}">Cena</span></td>
+					<td><span th:text="${samochody.kaucja}">Kaucja</span></td>
+					<td><a href="onclick">Zobacz</a></td>
+				</tr>
 		</tbody>
 	</table>
 

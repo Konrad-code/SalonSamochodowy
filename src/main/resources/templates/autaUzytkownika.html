@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Twoje Auta</title>
+	<link rel="stylesheet" type="text/css" href="Style.css">
+	<link rel="stylesheet" type="text/css" href="sidenav.css">
+	<link rel="stylesheet" type="text/css" href="slider.css">
+	<script src="animacjaPaska.js"></script>
+	<script src="menu.js"></script>
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="glowna">O nas</a>
+    <a href="menu">Nasze Auta</a>
+    <a href="login">Zaloguj się</a>
+</div>
+
+
+<span style="font-size:30px;color: #FFFF;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+
+<h2 style="text-align: center; color: #FFFF; text-size: 50px">Twoje auta</h2>
+
+<div>
+
+	<table id = "customers">
+		<tr>
+			<th>id</th>
+			<th>Marka</th>
+			<th>Model</th>
+			<th>Cena za dzień</th>
+			<th>Kaucja</th>
+		</tr>
+	
+		<tr>
+			<td>1</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		
+		<tr>
+			<td>2</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</div>
+</table>
+ <div style="display: block; text-align: center">
+    <label for="noOfCar">
+				<b style="color: #FFFF" >Zwróć auto o numerze </b>
+			</label>
+			<input type="text" placeholder="Number of car" name="noCar" required > 
+    </div>
+    
+    <div style="display: block; text-align: center; margin-left: 15%; margin-top: 2%">
+    
+    <button type="rent">Zatwierdź zwrot</button>
+    
+    </div>
+
+</div>
+</body>
+</html>

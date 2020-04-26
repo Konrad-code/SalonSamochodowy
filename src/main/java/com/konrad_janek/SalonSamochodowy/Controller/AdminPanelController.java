@@ -11,10 +11,12 @@ public class AdminPanelController {
 
 	@GetMapping("/adminPanel")
 	public String adminPanelPage(@ModelAttribute CustomerDAO customer) {
-		if(customer == null)
+		/*if(customer == null)
 			return "login";
 		if(customer.isRoot())
 			return "adminPanel";
-		return "login";
+		return "login";*/
+		
+		return "adminPanel";
 	}
 }
