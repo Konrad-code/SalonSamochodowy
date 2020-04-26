@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="StyleLogin.css">
+	<link rel="stylesheet" type="text/css" href="sidenav.css">
+	<script src="animacjaPaska.js"></script>
+<title>Admin - edycja danych uzytkownika</title>
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="glowna">O nas</a>
+    <a href="menu">Nasze Auta</a>
+    <a href="login">Zaloguj się</a>
+</div>
+
+
+<span style="font-size:30px;color: #FFFF;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+
+	<h2 style="text-align: center; color: #FFFF; text-size: 60px">Edycja danych uzytkownika</h2>
+
+
+
+	<form action="login" method="post">
+		<div class="container">
+		
+			<label for="uname">
+				<b style="color: #FFFF" >Login</b>
+			</label>
+			<input type="text" placeholder="Enter Username" name="Login" required > 
+			
+			
+			<label
+				for="psw"><b style="color: #FFFF">Hasło</b>
+			</label> 
+			<input type="text" placeholder="Enter Password" name="Haslo" required>
+
+
+			<label
+				for="psw"><b style="color: #FFFF">Dowód</b>
+			</label> 
+			<input type="text" placeholder="Enter ID" name="repetedHaslo" required>
+			
+			
+			<label for="uname">
+				<b style="color: #FFFF" >Saldo</b>
+			</label>
+			<input type="text" placeholder="Enter credit" name="dowodOsobisty" required > 
+
+			<button type="submit">Edytuj</button>
+			<button type="cancel">Anuluj</button>
+			
+			
+		</div>		
+	</form>
+
+</body>
+</html>

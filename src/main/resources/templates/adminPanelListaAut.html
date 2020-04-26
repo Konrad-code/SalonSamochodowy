@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Admin - Lista Aut</title>
+	<link rel="stylesheet" type="text/css" href="Style.css">
+	<link rel="stylesheet" type="text/css" href="sidenav.css">
+	<script src="animacjaPaska.js"></script>
+	<script src="menu.js"></script>
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="glowna">O nas</a>
+    <a href="menu">Nasze Auta</a>
+    <a href="login">Zaloguj się</a>
+</div>
+
+
+<span style="font-size:30px;color: #FFFF;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+
+	<h2 style="text-align: center; color: #FFFF; text-size: 60px">Lista Aut</h2>
+
+	<table id = "customers">
+		<thead>
+			<tr>
+				<th>Marka</th>
+				<th>Model</th>
+				<th>Cena</th>
+				<th>Kaucja</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			
+				<tr th:each="samochody: ${samochody}">
+					<td><span th:text="${samochody.marka}">marka</span></td>
+					<td><span th:text="${samochody.model}">model</span></td>
+					<td><span th:text="${samochody.cena}">Cena</span></td>
+					<td><span th:text="${samochody.kaucja}">Kaucja</span></td>
+				</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>
