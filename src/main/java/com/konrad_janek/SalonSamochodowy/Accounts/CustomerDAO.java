@@ -95,5 +95,5 @@ public class CustomerDAO extends CRUD {
 			closeConnection();
 		}
 		return ifSuccessfullyLogged;
-	}
+	}	
 }

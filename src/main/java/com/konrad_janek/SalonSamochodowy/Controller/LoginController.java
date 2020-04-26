@@ -15,11 +15,10 @@ import com.konrad_janek.SalonSamochodowy.Accounts.CustomerDAO;
 @Controller
 public class LoginController {
 	
-	
 	@GetMapping("/login")
 	public String loginPage(Model model) {
 		CustomerDAO customer = new CustomerDAO();
-		model.addAttribute("customer_model", customer);
+		model.addAttribute("customer", customer);
 		return "login";
 	}
 	
@@ -31,25 +30,30 @@ public class LoginController {
 		boolean ifLoggedSuccessfully, ifDataCorrect = false;
 		System.out.println("Login provided: " + loginProvided + " | Password provided: " 
 							+ passwordProvided + " and table `customer` exists? " + ifTableExists);
-		if((loginProvided.length() >= 4 && loginProvided.length() <= 30) && (passwordProvided.length() >= 8 && passwordProvided.length() <= 30))
+		if((loginProvided.length() >= 4 && loginProvided.length() <= 30) && (passwordProvided.length() >= 8 
+				&& passwordProvided.length() <= 30))
             ifDataCorrect = true;
         else
             System.out.println("Provided data incorrect. Login and password have to consist of between 4 and 30 characters");
 		if(ifTableExists && ifDataCorrect){
             ifLoggedSuccessfully = customer.tryLogin(loginProvided, passwordProvided);
             System.out.println("If username managed to log in successfully: " + ifLoggedSuccessfully);
+            if(customer.isRoot())
+    			return "menu_zalogowanyAdmin";
             if(ifLoggedSuccessfully){
                 System.out.println("You've been logged successfully!\nWelcome " + customer.getLogin());
-                return "menu";	// TODO - wymienic na odpowiednie menu po zalogowaniu
+                return "menu_zalogowanyCustomer";	// TODO - wymienic na odpowiednie menu po zalogowaniu
+//                DOPISAC JS KOMUNIKAT - KOPIA Z POWYZSZEGO System.out.println
             }
-            else
+            else {
                 System.out.println("Incorrect data provided in USERNAME and PASSWORD fields\nFailed to login");
-        } else
+//             	DOPISAC JS KOMUNIKAT - KOPIA Z POWYZSZEGO System.out.println
+            }
+        } else {
             System.out.println("User doesn't exist\nDatabase empty");
-		
-		if(customer.isRoot())
-			return "adminPanel";
-		return "errorLogin";
+//         	DOPISAC JS KOMUNIKAT - KOPIA Z POWYZSZEGO System.out.println
+        }
+		return "login";
 	}
 	
 	@GetMapping("/rejestracja")

@@ -149,6 +149,32 @@ public abstract class CRUD extends ConnectDatabase implements ICRUD {
 	}
 	
 	@Override
+	public boolean checkDowod(String dowod) {
+		loadConnection();
+		PreparedStatement checkDowodStatement = null;
+		ResultSet rs = null;
+		boolean dowodFree = false;
+		
+		try {
+			checkDowodStatement = connection.prepareStatement("SELECT login FROM customer WHERE dowod=?;");
+			checkDowodStatement.setString(1, dowod);
+			System.out.println("Executing query `checkdowod`('" + dowod + "')");
+			rs = checkDowodStatement.executeQuery();
+			if(rs.next())
+				System.out.println("Query `checkdowod` called successfully but it means - dowod is occupied");
+			else
+				dowodFree = true;
+		} catch (SQLException e) {
+			System.err.println("Failed to execute query `checkdowod` at database: " + e.getMessage());
+		} finally {
+			try { rs.close(); } catch (Exception e) { /* leave action */ }
+			try { checkDowodStatement.close(); } catch (Exception e) { /* leave action */ }
+			closeConnection();
+		}
+		return dowodFree;
+	}
+	
+	@Override
 	public boolean deleteCustomer(String userToRemove) {
 		loadConnection();
 		PreparedStatement deleteCustomerStatement = null;

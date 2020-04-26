@@ -16,4 +16,5 @@ public interface ICRUD {
 	public Customer zmienRekordNaCustomera(ResultSet result) throws SQLException;
 	public boolean updateCustomer(Customer loadedCustomerForEdit);
 	public boolean obciazKonto(int id_customer, int kwota);
+	public boolean checkDowod(String dowod);
 }
