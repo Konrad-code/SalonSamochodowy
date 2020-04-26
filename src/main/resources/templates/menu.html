@@ -34,12 +34,12 @@
 
 		<tbody>
 			
-				<tr th:each="samochody: ${samochody}">
-					<td><span th:text="${samochody.marka}">marka</span></td>
-					<td><span th:text="${samochody.model}">model</span></td>
-					<td><span th:text="${samochody.cena}">Cena</span></td>
-					<td><span th:text="${samochody.kaucja}">Kaucja</span></td>
-					<td><a href="onclick">Zobacz</a></td>
+				<tr th:each="car: ${samochody}">
+					<td><span th:text="${car.marka}">marka</span></td>
+					<td><span th:text="${car.model}">model</span></td>
+					<td><span th:text="${car.cena}">Cena</span></td>
+					<td><span th:text="${car.kaucja}">Kaucja</span></td>
+					<td><a th:href="@{/onclick(id_car=${car.id_car})}">Zobacz</a></td>
 				</tr>
 		</tbody>
 	</table>

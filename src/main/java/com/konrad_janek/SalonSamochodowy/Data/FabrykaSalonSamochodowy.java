@@ -54,7 +54,8 @@ public class FabrykaSalonSamochodowy extends ConnectDatabase implements IFabryka
 		System.out.println("Lista samochodow dostepnych w bazie wypozyczalni: ");
 		for (Samochod samochod : listaSamochody) {
 			System.out.println(licznik + ". MARKA: " + samochod.getMarka() + " | MODEL: " + samochod.getModel()
-			+ " | CENA ZA DOBE WYPOZYCZENIA: " + samochod.getCena() + " | KAUCJA: " + samochod.getKaucja());
+			+ " | CENA ZA DOBE WYPOZYCZENIA: " + samochod.getCena() + " | KAUCJA: " + samochod.getKaucja()
+			+ "ID_CAR: " + samochod.getId_car());
 			licznik++;
 		}
 	}
@@ -65,8 +66,9 @@ public class FabrykaSalonSamochodowy extends ConnectDatabase implements IFabryka
 		String model = result.getString("model");
 		int cena = result.getInt("cena");
 		int kaucja = result.getInt("kaucja");
+		int id_car = result.getInt("id_car");
 		
-		Samochod dawcaSamochod = new Samochod(marka, model, cena, kaucja);
+		Samochod dawcaSamochod = new Samochod(marka, model, cena, kaucja, id_car);
 		return dawcaSamochod;	
 	}
 

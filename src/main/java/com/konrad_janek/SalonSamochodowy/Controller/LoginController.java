@@ -1,7 +1,5 @@
 package com.konrad_janek.SalonSamochodowy.Controller;
 
-import javax.swing.JOptionPane;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,17 +15,20 @@ public class LoginController {
 	
 	@GetMapping("/login")
 	public String loginPage(Model model) {
+		CustomerDAO cleanCustomer = new CustomerDAO();
 		CustomerDAO customer = new CustomerDAO();
+		model.addAttribute("cleanCustomer", cleanCustomer);
 		model.addAttribute("customer", customer);
 		return "login";
 	}
 	
 	@PostMapping("/login")
-	public String verifyLoginPage(@ModelAttribute CustomerDAO customer, Model model,
+	public String verifyLoginPage(@ModelAttribute CustomerDAO cleanCustomer, Model model,
 									@RequestParam("Login") String loginProvided,
 									@RequestParam("Haslo") String passwordProvided) {
 		boolean ifTableExists = CRUD.checkIfTableExistsInDatabase();
 		boolean ifLoggedSuccessfully, ifDataCorrect = false;
+		CustomerDAO customer = new CustomerDAO();
 		System.out.println("Login provided: " + loginProvided + " | Password provided: " 
 							+ passwordProvided + " and table `customer` exists? " + ifTableExists);
 		if((loginProvided.length() >= 4 && loginProvided.length() <= 30) && (passwordProvided.length() >= 8 
@@ -36,7 +37,9 @@ public class LoginController {
         else
             System.out.println("Provided data incorrect. Login and password have to consist of between 4 and 30 characters");
 		if(ifTableExists && ifDataCorrect){
-            ifLoggedSuccessfully = customer.tryLogin(loginProvided, passwordProvided);
+            ifLoggedSuccessfully = cleanCustomer.tryLogin(loginProvided, passwordProvided);
+            customer = cleanCustomer;
+            model.addAttribute("customer", customer);
             System.out.println("If username managed to log in successfully: " + ifLoggedSuccessfully);
             if(customer.isRoot())
     			return "menu_zalogowanyAdmin";
