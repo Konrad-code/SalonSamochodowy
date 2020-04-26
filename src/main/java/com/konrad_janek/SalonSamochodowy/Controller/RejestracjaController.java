@@ -6,8 +6,5 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class RejestracjaController {
 	
-	@GetMapping("/rejestracja")
-	public String onasPage() {
-		return "rejestracja";
-	}
+	
 }

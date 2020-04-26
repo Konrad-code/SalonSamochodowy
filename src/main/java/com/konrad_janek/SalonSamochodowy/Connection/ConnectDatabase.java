@@ -27,7 +27,7 @@ public class ConnectDatabase implements IConnectDatabase{
 			final String PASSWORD = properties.getProperty("password");
 			final String URL = properties.getProperty("url");
 			final String JDBC_DRIVER = properties.getProperty("jdbc_driver");
-			
+
 			Class.forName(JDBC_DRIVER);
 			connection = DriverManager.getConnection(URL, LOGIN, PASSWORD);
 		} catch (FileNotFoundException e) {
