@@ -18,7 +18,9 @@ Projekt został zrealizowany przy użyciu Springa i języków: Java, HTML, SQL, 
 Aby uruchomić portal należy go zaimportować jako plik Maven oraz mieć zainstalowane środowisko pgAdmin 4.
 W pliku „sql\SalonSamochodowy_properties.txt” trzeba zmienić pozycje „login” oraz „password” na te, które są podane w programie pgAdmin 4. 
 Następnie przekopiowaną zawartość pliku „sql\build” należy uruchomić jako skrypt sql w przeznaczonej na testy aplikacji bazie danych.
-Po zaimportowaniu i uruchomieniu aplikacji można wejść za pośrednictwem przeglądarki na "http://localhost:8080"
+Po zaimportowaniu i uruchomieniu aplikacji można wejść za pośrednictwem przeglądarki na "http://localhost:8080" 
+(ostatni element ścieżki to nazwa bazy jaka się utworzyło. Zalecamy taka jak jest, ale jak ktoś zrobił inna to musi podmienić)
+
 Jeśli IDE z którego korzysta użytkownik nie dokonuje autolinkowania, to należy plik postgresql-42.2.11.jar z 
 folderu źródłowego src kliknąć prawym przyciskiem myszy i dodać do "Build path", po czym plik w drzewku powinien przenieść się do "Referenced libraries".
 Jako projekt Maven należy na początku uruchomić go z opcja run as -> clean, następnie tak samo tylko z opcja run as -> install. 
