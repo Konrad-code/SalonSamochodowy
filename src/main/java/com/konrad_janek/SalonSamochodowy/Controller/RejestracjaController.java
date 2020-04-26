@@ -102,8 +102,10 @@ public class RejestracjaController {
                 throw new TooShortOrLongPassword();
             if(loginProvided.length() < 4 || loginProvided.length() > 20)
                 throw new TooShortOrLongLogin();
-            if(dowodProvided.length() != 10)
+            if(dowodProvided.length() == 10) {
+            	System.out.println("You've entered " + dowodProvided.length() + " character dowod. Have to be 10");
                 throw new TooShortOrLongDowod();
+            }
             if(verifyString(loginProvided))
                 throw new ForbiddenCharacterPassword();
             if(verifyString(dowodProvided))
