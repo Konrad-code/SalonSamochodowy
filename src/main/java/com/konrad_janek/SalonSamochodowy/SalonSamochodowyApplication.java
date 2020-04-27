@@ -12,6 +12,7 @@ public class SalonSamochodowyApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SalonSamochodowyApplication.class, args);
 		
+		// output with java lib - Mon Apr 27 16:05:27 CEST 2020
 		
 		Date date = new Date();
 		

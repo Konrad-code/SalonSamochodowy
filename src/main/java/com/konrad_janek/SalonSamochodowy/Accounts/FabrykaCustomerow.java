@@ -7,10 +7,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.konrad_janek.SalonSamochodowy.Connection.ConnectDatabase;
+import com.konrad_janek.SalonSamochodowy.Data.FabrykaSalonSamochodowy;
+import com.konrad_janek.SalonSamochodowy.Data.Samochod;
 import com.konrad_janek.SalonSamochodowy.Templates.IFabrykaCustomerow;
 
 public class FabrykaCustomerow extends ConnectDatabase implements IFabrykaCustomerow{
 	private static ArrayList<Customer> listCustomers = new ArrayList<Customer>();
+	private static FabrykaCustomerow single_instance = null;	// FOR TRANSACTION CLASS USAGE
+
+	public static FabrykaCustomerow getInstance()  // FOR TRANSACTION CLASS USAGE
+    {
+        if (single_instance == null)
+            single_instance = new FabrykaCustomerow(true);
+        return single_instance;
+    }
+	
+	public FabrykaCustomerow(boolean flag) {
+		// BRIDGE CONSTRUCTOR FOR SINGLE INSTANCE FOR OBTAINING ACCESS 
+		// TO METHOD TRANSLATING CUSTOMER INTO DAO FORM FOR TRANSACTION CLASS USAGE
+	}
 	
 	public FabrykaCustomerow() {
 		listCustomers.clear();
@@ -34,8 +49,10 @@ public class FabrykaCustomerow extends ConnectDatabase implements IFabrykaCustom
 		String login = result.getString("login");
 		String password = result.getString("password");
 		String dowod = result.getString("dowod");
+		int saldo = result.getInt("saldo");
+		int id_customer = result.getInt("id_customer");
 		
-		Customer dawcaCustomer = new Customer(login, password, dowod);
+		Customer dawcaCustomer = new Customer(id_customer, login, password, dowod, saldo, false);
 		return dawcaCustomer;	
 	}
 

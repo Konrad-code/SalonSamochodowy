@@ -55,7 +55,7 @@ public class FabrykaSalonSamochodowy extends ConnectDatabase implements IFabryka
 		for (Samochod samochod : listaSamochody) {
 			System.out.println(licznik + ". MARKA: " + samochod.getMarka() + " | MODEL: " + samochod.getModel()
 			+ " | CENA ZA DOBE WYPOZYCZENIA: " + samochod.getCena() + " | KAUCJA: " + samochod.getKaucja()
-			+ "ID_CAR: " + samochod.getId_car());
+			+ " | ID_CAR: " + samochod.getId_car());
 			licznik++;
 		}
 	}

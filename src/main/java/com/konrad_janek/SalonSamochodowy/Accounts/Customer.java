@@ -25,9 +25,17 @@ public class Customer {
 	}
 	
 	public Customer(String login, String password, String dowod) {
+		// ADD CUSTOMER CONSTRUCTOR
 		this.login = login;
 		this.password = password;
 		this.dowod = dowod;
+	}
+	
+	public Customer(int id_customer, String login, int saldo) {
+		// FOR TRANSACTION PURPOSE
+		this.id_customer = id_customer;
+		this.login = login;
+		this.saldo = saldo;
 	}
 	
 	public Customer() {	// in case of further SpringBoot functionality development
