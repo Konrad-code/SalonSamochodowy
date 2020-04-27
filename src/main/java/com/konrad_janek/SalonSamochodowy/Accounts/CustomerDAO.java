@@ -28,40 +28,20 @@ public class CustomerDAO extends CRUD {
 		return Login;
 	}
 	
-	public void setLogin(String login) {
-		Login = login;
-	}
-	
 	public String getDowod() {
 		return Dowod;
-	}
-	
-	public void setDowod(String dowod) {
-		Dowod = dowod;
 	}
 	
 	public int getSaldo() {
 		return Saldo;
 	}
 	
-	public void setSaldo(int saldo) {
-		Saldo = saldo;
-	}
-	
 	public boolean isRoot() {
 		return Root;
-	}
-	
-	public void setRoot(boolean root) {
-		Root = root;
 	}
 
 	public static int getLicznikInstancji() {
 		return licznikInstancji;
-	}
-
-	public static void setLicznikInstancji(int licznikInstancji) {
-		CustomerDAO.licznikInstancji = licznikInstancji;
 	}
 	
 	@Override

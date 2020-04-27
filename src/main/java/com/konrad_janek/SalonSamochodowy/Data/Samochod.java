@@ -1,6 +1,7 @@
 package com.konrad_janek.SalonSamochodowy.Data;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Samochod {
 	
@@ -19,7 +20,7 @@ public class Samochod {
 	private int cena;
 	int kaucja;
 	int id_car;
-	private Date dataWypozyczenia;
+	private LocalDate dataWypozyczenia;
 	private int dlugoscWypozyczenia;
 	
 	public Samochod(String marka, String model, int cena, int kaucja, int id_car) {
@@ -30,7 +31,7 @@ public class Samochod {
 		this.id_car = id_car;
 	}
 	
-	public Samochod(int id_car, String model, int cena, int kaucja, Date dataWypozyczenia, int dlugoscWypozyczenia) {
+	public Samochod(int id_car, String model, int cena, int kaucja, LocalDate dataWypozyczenia, int dlugoscWypozyczenia) {
 		// FOR TRANSACTION PURPOSE
 		this.model = model;
 		this.cena = cena;
@@ -68,10 +69,6 @@ public class Samochod {
 		return kaucja;
 	}
 
-	public void setDataOddania(int dataOddania) {
-		this.kaucja = kaucja;
-	}
-
 	public int getId_car() {
 		return id_car;
 	}
@@ -84,11 +81,11 @@ public class Samochod {
 		this.kaucja = kaucja;
 	}
 
-	public Date getDataWypozyczenia() {
+	public LocalDate getDataWypozyczenia() {
 		return dataWypozyczenia;
 	}
 
-	public void setDataWypozyczenia(Date dataWypozyczenia) {
+	public void setDataWypozyczenia(LocalDate dataWypozyczenia) {
 		this.dataWypozyczenia = dataWypozyczenia;
 	}
 

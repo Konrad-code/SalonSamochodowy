@@ -236,7 +236,7 @@ public abstract class CRUD extends ConnectDatabase implements ICRUD {
 				customer = zmienRekordNaCustomera(results);
 				System.out.println("Query `getCustomerForEdit` executed successfully");
 			} else
-				System.out.println("Query `getCustomerForEdit` executed withut positive result. "
+				System.out.println("Query `getCustomerForEdit` executed without positive result. "
 						+ "No customer with login '" + userToEdit +"'");
 		} catch (SQLException e) {
 			System.err.println("Failed to carry `getCustomerForEdit` method: " + e.getMessage());

@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,8 +55,10 @@ public class FabrykaTransakcji extends ConnectDatabase implements IFabrykaTransa
 	
 	@Override
 	public TransakcjaDAO zmienRekordNaTransakcje(ResultSet result) throws SQLException {
+		LocalDate dataOddania = null;
 		int id_transakcja = result.getInt("id_transakcja");
-		Date dataOddania = result.getDate("dataOddania");
+		if(result.getDate("dataOddania") != null)
+			dataOddania = result.getDate("dataOddania").toLocalDate();
 		int customer_id = result.getInt("customer_id");
 		int car_id = result.getInt("car_id");
 		

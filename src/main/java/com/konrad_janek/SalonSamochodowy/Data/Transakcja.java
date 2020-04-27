@@ -1,12 +1,13 @@
 package com.konrad_janek.SalonSamochodowy.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import com.konrad_janek.SalonSamochodowy.Accounts.Customer;
 
 public class Transakcja {
 	private int id_transakcja;
-	private Date dataOddania;
+	private LocalDate dataOddania;
 	private boolean zatwierdzona;
 
 //	BY GETTERS FROM private Customer customer;
@@ -19,7 +20,7 @@ public class Transakcja {
 	private String car_model;
 	private int car_cena;
 	private int car_kaucja;
-	private Date car_dataWypozyczenia;
+	private LocalDate car_dataWypozyczenia;
 	private int car_dlugoscWypozyczenia;
 	
 	public Transakcja(TransakcjaDAO transakcja) {
@@ -41,7 +42,7 @@ public class Transakcja {
 		return id_transakcja;
 	}
 
-	public Date getDataOddania() {
+	public LocalDate getDataOddania() {
 		return dataOddania;
 	}
 
@@ -77,7 +78,7 @@ public class Transakcja {
 		return car_kaucja;
 	}
 
-	public Date getCar_dataWypozyczenia() {
+	public LocalDate getCar_dataWypozyczenia() {
 		return car_dataWypozyczenia;
 	}
 

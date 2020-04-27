@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS public."transaction";
+
 DROP TABLE IF EXISTS public."car";
 
 DROP TABLE IF EXISTS public."customer";
@@ -5,7 +7,7 @@ DROP TABLE IF EXISTS public."customer";
 CREATE TABLE IF NOT EXISTS public.customer
 (
 	 id_customer SERIAL PRIMARY KEY, 
-	 login VARCHAR(50) NOT NULL,
+	 login VARCHAR(50) UNIQUE NOT NULL,
 	 password VARCHAR(50) NOT NULL,
 	 dowod VARCHAR(50) UNIQUE NOT NULL,
 	 saldo INTEGER DEFAULT 0,
@@ -20,15 +22,30 @@ CREATE TABLE IF NOT EXISTS public.car
 	 model VARCHAR(50) NOT NULL,
 	 cena INTEGER NOT NULL,
 	 kaucja INTEGER NOT NULL,
-	 CONSTRAINT car_user_id_fkey FOREIGN KEY (customer_id)
+	 dataWypozyczenia DATE DEFAULT NULL,
+	 dlugoscWypozyczenia INTEGER DEFAULT 0,
+	 CONSTRAINT car_customer_id_fkey FOREIGN KEY (customer_id)
         REFERENCES public.customer (id_customer) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 );
 
-SELECT * FROM car;
-
-SELECT * FROM customer;
+CREATE TABLE IF NOT EXISTS public.transaction
+(
+	 id_transaction SERIAL PRIMARY KEY, 
+	 customer_id INTEGER NOT NULL,
+	 car_id INTEGER NOT NULL,
+	 dataOddania DATE DEFAULT NULL,
+	 zatwierdzona BOOLEAN DEFAULT FALSE,
+	 CONSTRAINT transaction_car_id_fkey FOREIGN KEY (car_id)
+        REFERENCES public.car (id_car) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+	 CONSTRAINT transaction_customer_id_fkey FOREIGN KEY (customer_id)
+        REFERENCES public.customer (id_customer) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
 
 INSERT INTO customer (login, password, dowod, saldo, root)
 	 VALUES ('mHm_MaXi', 'M@ciek69', 'ASR711013', 1000000, true),
@@ -50,7 +67,7 @@ INSERT INTO customer (login, password, dowod, saldo, root)
 		 ('SlimShady', 'M@ciek69', 'AXI904479', 47000, false),
 		 ('Eminem_rihanna', 'M@ciek69', 'AXC130405', 14300, false),
 		 ('rozkurwiator666', 'M@ciek69', 'ATY407657', -4700, false),
-		 ('janekjmf', 'M@ciek69', 'FBI517657', 1000000, true);
+		 ('janekjmf', 'M@ciek69', 'FBI405457', 1000000, true);
 
 INSERT INTO car (marka, model, cena, kaucja)
 		 VALUES ('Mercedes', 'Vito', 25, 5000),
@@ -73,7 +90,74 @@ INSERT INTO car (marka, model, cena, kaucja)
 			 ('SRT', 'Viper', 60, 28000),
 			 ('BMW', 'M3', 40, 13000);
 
+UPDATE car SET customer_id=null, dataWypozyczenia=null, dlugoscWypozyczenia=0;
+
+UPDATE car SET customer_id=10, dataWypozyczenia='2020-04-23', dlugoscWypozyczenia=3 WHERE id_car=11;
+UPDATE car SET customer_id=10, dataWypozyczenia='2020-04-20', dlugoscWypozyczenia=5 WHERE id_car=12;
+UPDATE car SET customer_id=11, dataWypozyczenia='2020-04-23', dlugoscWypozyczenia=7 WHERE id_car=13;
+UPDATE car SET customer_id=11, dataWypozyczenia='2020-04-20', dlugoscWypozyczenia=3 WHERE id_car=14;
+UPDATE car SET customer_id=12, dataWypozyczenia='2020-04-27', dlugoscWypozyczenia=3 WHERE id_car=15;
+UPDATE car SET customer_id=12, dataWypozyczenia='2020-04-25', dlugoscWypozyczenia=1 WHERE id_car=16;
+UPDATE car SET customer_id=13, dataWypozyczenia='2020-04-21', dlugoscWypozyczenia=13 WHERE id_car=17;
+UPDATE car SET customer_id=13, dataWypozyczenia='2020-04-24', dlugoscWypozyczenia=2 WHERE id_car=18;
+UPDATE car SET customer_id=15, dataWypozyczenia='2020-02-27', dlugoscWypozyczenia=3 WHERE id_car=19;
+UPDATE car SET customer_id=15, dataWypozyczenia='2020-04-25', dlugoscWypozyczenia=2 WHERE id_car=10;
+
+INSERT INTO transaction (customer_id, car_id)
+				 VALUES (10, 11);
+INSERT INTO transaction (customer_id, car_id)
+				 VALUES (10, 12);
+INSERT INTO transaction (customer_id, car_id)
+				 VALUES (11, 13);
+INSERT INTO transaction (customer_id, car_id)
+				 VALUES (11, 14);				 
+INSERT INTO transaction (customer_id, car_id)
+				 VALUES (12, 15);
+INSERT INTO transaction (customer_id, car_id)
+				 VALUES (12, 16);
+INSERT INTO transaction (customer_id, car_id)
+				 VALUES (13, 17);
+INSERT INTO transaction (customer_id, car_id)
+				 VALUES (13, 18);
+INSERT INTO transaction (customer_id, car_id)
+				 VALUES (15, 19);
+INSERT INTO transaction (customer_id, car_id)
+				 VALUES (15, 10);
+				 
+/* NOW IT'S A BLOCK FOR DEVELOPERS TESTING COMMANDS, STOP COPYING *
+ * NOW IT'S A BLOCK FOR DEVELOPERS TESTING COMMANDS, STOP COPYING *
+ * NOW IT'S A BLOCK FOR DEVELOPERS TESTING COMMANDS, STOP COPYING *
+ * NOW IT'S A BLOCK FOR DEVELOPERS TESTING COMMANDS, STOP COPYING *
+ * NOW IT'S A BLOCK FOR DEVELOPERS TESTING COMMANDS, STOP COPYING *
+ * NOW IT'S A BLOCK FOR DEVELOPERS TESTING COMMANDS, STOP COPYING *
+ * NOW IT'S A BLOCK FOR DEVELOPERS TESTING COMMANDS, STOP COPYING *
+ * NOW IT'S A BLOCK FOR DEVELOPERS TESTING COMMANDS, STOP COPYING *
+ * NOW IT'S A BLOCK FOR DEVELOPERS TESTING COMMANDS, STOP COPYING *
+ */
+
+SELECT NOW()::date;
+
+SELECT CURRENT_DATE;
+
+SELECT * FROM car;
 
 SELECT * FROM customer;
 
-SELECT * FROM car;
+SELECT * FROM transaction;
+
+SELECT * FROM customer;
+
+SELECT * FROM car ORDER BY id_car;
+
+DELETE FROM customer;
+
+DELETE FROM car;
+
+DELETE FROM transaction;
+
+SELECT dowod, saldo, root FROM customer WHERE (login='mHm_MaXi' AND password='M@ciek69');
+
+DELETE FROM customer WHERE login='Fryderyk11' AND root IS NOT TRUE;
+
+INSERT INTO customer (login, password, dowod, saldo, root)
+	 VALUES ('Fryderyk11', 'M@ciek69', 'ASR733013', 70000, true);

@@ -45,48 +45,24 @@ public class Customer {
 		return id_customer;
 	}
 
-	public void setId_customer(int id_customer) {
-		this.id_customer = id_customer;
-	}
-
 	public String getLogin() {
 		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
 	}
 
 	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public String getDowod() {
 		return dowod;
-	}
-
-	public void setDowod(String dowod) {
-		this.dowod = dowod;
 	}
 
 	public int getSaldo() {
 		return saldo;
 	}
 
-	public void setSaldo(int saldo) {
-		this.saldo = saldo;
-	}
-
 	public boolean isRoot() {
 		return root;
-	}
-
-	public void setRoot(boolean root) {
-		this.root = root;
 	}
 
 	@Override

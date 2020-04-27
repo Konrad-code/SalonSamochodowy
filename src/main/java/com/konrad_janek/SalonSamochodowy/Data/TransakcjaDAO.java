@@ -3,6 +3,7 @@ package com.konrad_janek.SalonSamochodowy.Data;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,12 +29,12 @@ public class TransakcjaDAO extends ConnectDatabase implements ITransakcja {
 	}
 	
 	private int id_transakcja;
-	private Date dataOddania;
+	private LocalDate dataOddania;
 	private Customer customer;
 	private Samochod car;
 	private boolean zatwierdzona = false;
 	
-	public TransakcjaDAO(int id_transakcja, Date dataOddania, Customer customer, Samochod car) {
+	public TransakcjaDAO(int id_transakcja, LocalDate dataOddania, Customer customer, Samochod car) {
 		this.id_transakcja = id_transakcja;
 		this.dataOddania = dataOddania;
 		this.customer = customer;
@@ -48,7 +49,7 @@ public class TransakcjaDAO extends ConnectDatabase implements ITransakcja {
 		return id_transakcja;
 	}
 
-	public Date getDataOddania() {
+	public LocalDate getDataOddania() {
 		return dataOddania;
 	}
 

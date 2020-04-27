@@ -19,61 +19,61 @@ public class OnClickController {
 		
 		if(id_car == 1) {
 			System.out.println("Show Vito");
-			return "Vito";
+			return "auta/Vito";
 		} else if(id_car == 2) {
 			System.out.println("Show Sprinter");
-			return "Sprinter";
+			return "auta/Sprinter";
 		} else if(id_car == 3) {
 			System.out.println("Show Yaris");
-			return "Yaris";
+			return "auta/Yaris";
 		} else if(id_car == 4) {
 			System.out.println("Show Auris");
-			return "Auris";
+			return "auta/Auris";
 		} else if(id_car == 5) {
 			System.out.println("Show Fabia");
-			return "Fabia";
+			return "auta/Fabia";
 		} else if(id_car == 6) {
 			System.out.println("Show Ka");
-			return "Ka";
+			return "auta/Ka";
 		} else if(id_car == 7) {
 			System.out.println("Show Twingo");
-			return "Twingo";
+			return "auta/Twingo";
 		} else if(id_car == 8) {
 			System.out.println("Show DS3");
-			return "DS3";
+			return "auta/DS3";
 		} else if(id_car == 9) {
 			System.out.println("Show Klasa C");
-			return "KlasaC";
+			return "auta/KlasaC";
 		} else if(id_car == 10) {
 			System.out.println("Show Continental");
-			return "Continental";
+			return "auta/Continental";
 		} else if(id_car == 11) {
 			System.out.println("Show BMW 7");
-			return "Bmw7";
+			return "auta/Bmw7";
 		} else if(id_car == 12) {
 			System.out.println("Show Aston Martin DB9");
-			return "DB9";
+			return "auta/DB9";
 		} else if(id_car == 13) {
 			System.out.println("Show Maserati");
-			return "Maserati";
+			return "auta/Maserati";
 		} else if(id_car == 14) {
 			System.out.println("Show Ford Mustang");
-			return "FordMustang";
+			return "auta/FordMustang";
 		} else if(id_car == 15) {
 			System.out.println("Show Mercedes SLK");
-			return "MercedesSLK";
+			return "auta/MercedesSLK";
 		} else if(id_car == 16) {
 			System.out.println("Show Lamborghini Huracan");
-			return "LamborghiniHuracan";
+			return "auta/LamborghiniHuracan";
 		} else if(id_car == 17) {
 			System.out.println("Show Chevrolet Corvetta");
-			return "ChevroletCorvetta";
+			return "auta/ChevroletCorvetta";
 		} else if(id_car == 18) {
 			System.out.println("Show Dodge Viper");
-			return "DodgeViper";
+			return "auta/DodgeViper";
 		} else if(id_car == 19) {
 			System.out.println("Show BMW M3");
-			return "BmwM3";
+			return "auta/BmwM3";
 		}
 		
 		if(customer.isRoot())

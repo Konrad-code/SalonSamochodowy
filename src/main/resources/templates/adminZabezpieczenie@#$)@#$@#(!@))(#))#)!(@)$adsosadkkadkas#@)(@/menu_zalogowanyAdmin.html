@@ -2,7 +2,7 @@
 <html xmlns:th="http:www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Admin - Wypożyczenia</title>
+<title>Nasze Auta</title>
 	<link rel="stylesheet" type="text/css" href="Style.css">
 	<link rel="stylesheet" type="text/css" href="sidenav.css">
 	<script src="animacjaPaska.js"></script>
@@ -12,14 +12,18 @@
 
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="glowna">O nas</a>
-    <a href="menu">Nasze Auta</a>
+    <a href="adminZabezpieczenie@#$)@#$@#(!@))(#))#)!(@)$adsosadkkadkas#@)(@/glowna_zalogowanyAdmin">O nas</a>
+    <a href="adminZabezpieczenie@#$)@#$@#(!@))(#))#)!(@)$adsosadkkadkas#@)(@/menu_zalogowanyAdmin">Nasze Auta</a>
+    <a href="logout">Wyloguj się</a>
+    <a href="autaUzytkownika">Zwróć auta</a>
+    <a href="adminZabezpieczenie@#$)@#$@#(!@))(#))#)!(@)$adsosadkkadkas#@)(@/adminPanel">Admin panel</a>
+    
+    
 </div>
 
 
 <span style="font-size:30px;color: #FFFF;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 
-	<h2 style="text-align: center; color: #FFFF; text-size: 60px">Wypożyczenia</h2>
 
 	<table id = "customers">
 		<thead>
@@ -28,6 +32,7 @@
 				<th>Model</th>
 				<th>Cena</th>
 				<th>Kaucja</th>
+				<th>Więcej</th>
 			</tr>
 		</thead>
 
@@ -38,6 +43,7 @@
 					<td><span th:text="${samochody.model}">model</span></td>
 					<td><span th:text="${samochody.cena}">Cena</span></td>
 					<td><span th:text="${samochody.kaucja}">Kaucja</span></td>
+					<td><a href="onclick">Zobacz</a></td>
 				</tr>
 		</tbody>
 	</table>

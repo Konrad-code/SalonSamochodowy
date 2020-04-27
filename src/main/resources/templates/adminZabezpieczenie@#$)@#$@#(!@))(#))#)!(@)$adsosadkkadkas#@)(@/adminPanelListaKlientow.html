@@ -2,34 +2,35 @@
 <html xmlns:th="http:www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Admin - Oczekujące zwroty</title>
+<title>Admin - Lista Klientów</title>
 	<link rel="stylesheet" type="text/css" href="Style.css">
 	<link rel="stylesheet" type="text/css" href="sidenav.css">
-		<link rel="stylesheet" type="text/css" href="slider.css">
-
+	<link rel="stylesheet" type="text/css" href="slider.css">
 	<script src="animacjaPaska.js"></script>
 	<script src="menu.js"></script>
+	<script src="deleteAllUsers.js"></script>
 </head>
 <body>
 
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="glowna">O nas</a>
-    <a href="menu">Nasze Auta</a>
+    <a href="adminZabezpieczenie@#$)@#$@#(!@))(#))#)!(@)$adsosadkkadkas#@)(@/glowna_zalogowanyAdmin">O nas</a>
+    <a href="adminZabezpieczenie@#$)@#$@#(!@))(#))#)!(@)$adsosadkkadkas#@)(@/menu_zalogowanyAdmin">Nasze Auta</a>
+	<a href="logout">Wyloguj się</a>
 </div>
 
 
 <span style="font-size:30px;color: #FFFF;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 
-	<h2 style="text-align: center; color: #FFFF; text-size: 60px">Oczekujące zwroty</h2>
+	<h2 style="text-align: center; color: #FFFF; text-size: 60px">Lista Klientów</h2>
 
 	<table id = "customers">
 		<thead>
 			<tr>
-				<th>Marka</th>
-				<th>Model</th>
-				<th>Cena</th>
-				<th>Kaucja</th>
+				<th>Login</th>
+				<th>Dowód osobisty</th>
+				<th>Saldo</th>
+				<th>Czy root?</th>
 			</tr>
 		</thead>
 
@@ -44,16 +45,22 @@
 		</tbody>
 	</table>
 	
-	 <div style="display: block; text-align: center">
+	<div style="display: block; text-align: center">
     <label for="noOfCar">
-				<b style="color: #FFFF" >Zatwierdź zwrot auta o numerze </b>
+				<b style="color: #FFFF" >Wprowadź nr użytkownika</b>
 			</label>
 			<input type="text" placeholder="Number of car" name="noCar" required > 
+			
+			    <a href="adminPanelEdycjaDanychUzytkownika" style="color: #FFFF">Edytuj</a>
+
     </div>
     
     <div style="display: block; text-align: center; margin-left: 15%; margin-top: 2%">
     
-    <button type="rent">Zatwierdź zwrot</button>
+    <button type="submit">Usuń</button>
+    <button onclick="deleteAllUsers()">Usuń Wszystkich użytkowników</button>
+    <p id="demo" style="color: #FFFF"></p>
+    
     
     </div>
 
