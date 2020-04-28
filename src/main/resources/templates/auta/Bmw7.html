@@ -8,47 +8,54 @@
     <link rel="stylesheet" type="text/css" href="Style.css">
     <script src="animacjaPaska.js"></script>
     <script src="slider.js"></script>
+    <script src="rent.js"></script>
 
 </head>
 <body>
 
-<div class="slideshow-container">
+<h2 style=" text-size: 40px; color: #FFFF; text-align: center">BMW 7 Series 740 Li</h2></br>
+<div class="row">
+	<div class="column">
+		<div class="slideshow-container">
 
-    <div class="mySlides fade" style="display: block">
-        <img src="bmw1.jpg" style="width:100%">
-    </div>
+	    <div class="mySlides fade" style="display: block">
+	        <img src="bmw1.jpg" style="width:100%">
+	    </div>
+	
+	    <div class="mySlides fade">
+	        <img src="bmw2.jpg" style="width:100%">
+	    </div>
+	
+	    <div class="mySlides fade">
+	        <img src="bmw3.jpg" style="width:100%">
+	    </div>
+	
+	    <div class="mySlides fade">
+	        <img src="bmw4.jpg" style="width:100%">
+	    </div>
 
-    <div class="mySlides fade">
-        <img src="bmw2.jpg" style="width:100%">
-    </div>
+	    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+	    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+		</div>
+		<br>
 
-    <div class="mySlides fade">
-        <img src="bmw3.jpg" style="width:100%">
-    </div>
-
-    <div class="mySlides fade">
-        <img src="bmw4.jpg" style="width:100%">
-    </div>
-
-    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-</div>
-<br>
-
-<div style="text-align:center">
-    <span class="dot" onclick="currentSlide(1)"></span>
-    <span class="dot" onclick="currentSlide(2)"></span>
-    <span class="dot" onclick="currentSlide(3)"></span>
-    <span class="dot" onclick="currentSlide(4)"></span>
+	<div style="text-align:center">
+	    <span class="dot" onclick="currentSlide(1)"></span>
+	    <span class="dot" onclick="currentSlide(2)"></span>
+	    <span class="dot" onclick="currentSlide(3)"></span>
+	    <span class="dot" onclick="currentSlide(4)"></span>
+	
+	
+	</div>
+	</div>
 
 
-</div>
-
-
-<table id = "spec">
+	<div class="column">
+		<table id = "spec">
     <thead>
     <tr>
-        <th>Informacje</th>
+       <th>Specyfikacja</th>
+				<th>samochodu</th>
     </tr>
     </thead>
 
@@ -96,22 +103,26 @@
         <td>Napęd</td>
         <td>Na tylne koła</td>
     </tr>
-
-    </tbody>
-</table>
-
- <div style="display: block; text-align: center">
-    <label for="noOfDays">
-				<b style="color: #FFFF" >Wypożycz na </b>
+		
+		    </tbody>
+		</table>
+		
+		<div style="display: block; text-align: center">
+		    <label for="noOfDays">
+				</br><b style="color: #FFFF" >Wypożycz na </b>
 			</label>
+		
 			<input type="text" placeholder="Number of days" name="days" required > 
-    </div>
-    
-    <div style="display: block; text-align: center; margin-left: 15%; margin-top: 2%">
-    s  
-    <button type="rent">Wypożycz za 50 zł dziennie</button>
-    
-    </div>
+			
+			<p id="demo" style="color: #FFFF; text-align: right"></p></br>
+		</div>
+	    
+		<div style="display: block; text-align: center; margin-left: 15%; margin-top: 2%">        
+			<button onclick="rent()">Wypożycz za 50 zł dziennie</button> 
+		</div>
+	</div>
+</div>
+
 
 </body>
 </html>

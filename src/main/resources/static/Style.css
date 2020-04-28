@@ -79,6 +79,7 @@ a:hover{
 
 #customers td, #customers th {
   border: 1px solid #ddd;
+  border-color: 373737;
   padding: 8px;
 }
 
@@ -109,23 +110,40 @@ a:hover{
   width: 10%;
   margin: auto;
 }
+#spec thead{text-align:center;}
 
 #spec td, #spec th {
   border: 1px solid #ddd;
+  border-color: #373737;
+  
   padding: 8px;
 }
 
-#spec tr:nth-child(even){background-color: #ffffff;}
+#spec tr:nth-child(even){background-color: #2e2e2e;}
 
 #spec tr
-{background-color: #ddd;}
-#spec tr:hover {background-color: #969696;}
+{background-color: #484848;
+color: #d9d9d9;
+}
+#spec tr:hover {background-color: #6a6a6a;}
 
 #spec th {
   padding-top: 12px;
   padding-left: 100px;
   padding-bottom: 12px;
-  text-align: left;
+  text-align: center;
   background-color: #3e4c7f;
   color: white;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 5px;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
 }

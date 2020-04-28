@@ -8,12 +8,15 @@
     <link rel="stylesheet" type="text/css" href="Style.css">
     <script src="animacjaPaska.js"></script>
     <script src="slider.js"></script>
+    <script src="rent.js"></script>
 
 </head>
 <body>
 
-
-<div class="slideshow-container">
+<h2 style=" text-size: 40px; color: #FFFF; text-align: center">Mercedes Sprinter</h2></br>
+<div class="row">
+	<div class="column">
+				<div class="slideshow-container">
 
     <div class="mySlides fade" style="display: block">
         <img src="sprinter1.jpg" style="width:100%">
@@ -44,17 +47,18 @@
 
 
 </div>
+	</div>
 
 
-<table id = "spec">
-    <thead>
-    <tr>
-        <th>Informacje</th>
-        
-    </tr>
-    </thead>
-
-    <tbody>
+	<div class="column">
+		<table id = "spec">
+		    <thead>
+		    <tr>
+		        <th>Specyfikacja</th>
+				<th>samochodu</th>
+		    </tr>
+		    </thead>
+		<tbody>
     <tr>
         <td>Marka</td>
         <td>Mercedes-Benz</td>
@@ -101,18 +105,22 @@
 
     </tbody>
 </table>
- <div style="display: block; text-align: center">
-    <label for="noOfDays">
-				<b style="color: #FFFF" >Wypożycz na </b>
+		
+		<div style="display: block; text-align: center">
+		    <label for="noOfDays">
+				</br><b style="color: #FFFF" >Wypożycz na </b>
 			</label>
+		
 			<input type="text" placeholder="Number of days" name="days" required > 
-    </div>
-    
-    <div style="display: block; text-align: center; margin-left: 15%; margin-top: 2%">
-    
-    <button type="rent">Wypożycz za 30 zł dziennie</button>
-    
-    </div>
+			
+			<p id="demo" style="color: #FFFF; text-align: right"></p></br>
+		</div>
+	    
+		<div style="display: block; text-align: center; margin-left: 15%; margin-top: 2%">        
+			<button onclick="rent()">Wypożycz za 30 zł dziennie</button> 
+		</div>
+	</div>
+</div>
 
 
 </body>
