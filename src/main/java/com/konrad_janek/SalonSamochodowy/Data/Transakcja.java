@@ -28,7 +28,7 @@ public class Transakcja {
 		this.dataOddania = transakcja.getDataOddania();
 		this.zatwierdzona = transakcja.isZatwierdzona();
 		this.customer_id = transakcja.getCustomer().getId_customer();
-		this.customer_login = transakcja.getCustomer().getLogin();
+		this.customer_login = transakcja.getCustomer().getLogin();		// after implementing nick attribute login should be hidden as sensitive data
 		this.customer_saldo = transakcja.getCustomer().getSaldo();
 		this.car_id = transakcja.getCar().getId_car();
 		this.car_model = transakcja.getCar().getModel();

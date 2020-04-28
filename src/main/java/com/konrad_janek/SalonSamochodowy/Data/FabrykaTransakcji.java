@@ -14,11 +14,14 @@ import com.konrad_janek.SalonSamochodowy.Templates.IFabrykaTransakcji;
 
 public class FabrykaTransakcji extends ConnectDatabase implements IFabrykaTransakcji{
 
-	private static ArrayList<TransakcjaDAO> listaTransakcji = new ArrayList<TransakcjaDAO>();
-	private static ArrayList<TransakcjaDAO> listaTransakcjiZwrot = new ArrayList<TransakcjaDAO>();
-	private ArrayList<Transakcja> listaTransakcjiCustomer;
+	private static ArrayList<TransakcjaDAO> listaTransakcji = new ArrayList<TransakcjaDAO>();		// ADMIN ALL
+	private static ArrayList<TransakcjaDAO> listaTransakcjiZwrot = new ArrayList<TransakcjaDAO>();	// ADMIN TO ACCEPT
+	private ArrayList<Transakcja> listaTransakcjiCustomer;											// CUSTOMER
 	
-	public FabrykaTransakcji(int id_customer) {
+	public FabrykaTransakcji() {	// SPECIAL FOR AutaUzytkownikaController
+	}
+	
+	public FabrykaTransakcji(int id_customer) {							// CUSTOMER
 		List<TransakcjaDAO> list = wczytajTransakcjeZwrotCustomer(id_customer);
 		ArrayList<Transakcja> listaCustomera = new ArrayList<Transakcja>();
 		// TRANSLACJA
@@ -30,26 +33,26 @@ public class FabrykaTransakcji extends ConnectDatabase implements IFabrykaTransa
 	}
 	
 	public FabrykaTransakcji(boolean listaTransakcjiZwrotFlag) {
-		if(listaTransakcjiZwrotFlag) {
+		if(listaTransakcjiZwrotFlag) {									// ADMIN TO ACCEPT
 			listaTransakcjiZwrot.clear();
 			listaTransakcjiZwrot.addAll(wczytajTransakcjeZwrot());
 			wypiszTransakcje();
-		} else {
+		} else {														// ADMIN ALL
 			listaTransakcji.clear();
 			listaTransakcji.addAll(wczytajTransakcje());
 			wypiszTransakcje();
 		}
 	}
 	
-	public ArrayList<Transakcja> getListaTransakcjiCustomer() {
+	public ArrayList<Transakcja> getListaTransakcjiCustomer() {			// CUSTOMER
 		return listaTransakcjiCustomer;
 	}
 	
-	public ArrayList<TransakcjaDAO> getListaTransakcji() {
+	public ArrayList<TransakcjaDAO> getListaTransakcji() {				// ADMIN ALL
 		return listaTransakcji;
 	}
 	
-	public ArrayList<TransakcjaDAO> getListaTransakcjiZwrot() {
+	public ArrayList<TransakcjaDAO> getListaTransakcjiZwrot() {			// ADMIN TO ACCEPT
 		return listaTransakcjiZwrot;
 	}
 	
@@ -70,7 +73,7 @@ public class FabrykaTransakcji extends ConnectDatabase implements IFabrykaTransa
 	}
 
 	@Override
-	public List<TransakcjaDAO> wczytajTransakcje() {
+	public List<TransakcjaDAO> wczytajTransakcje() {					// ADMIN ALL
 		loadConnection();
 		List<TransakcjaDAO> list = new ArrayList<>();
 		PreparedStatement wczytajStatement = null;
@@ -95,7 +98,7 @@ public class FabrykaTransakcji extends ConnectDatabase implements IFabrykaTransa
 	}
 	
 	@Override
-	public List<TransakcjaDAO> wczytajTransakcjeZwrot() {
+	public List<TransakcjaDAO> wczytajTransakcjeZwrot() {				// ADMIN TO ACCEPT
 		loadConnection();
 		List<TransakcjaDAO> list = new ArrayList<>();
 		PreparedStatement wczytajStatement = null;
@@ -120,14 +123,15 @@ public class FabrykaTransakcji extends ConnectDatabase implements IFabrykaTransa
 	}
 	
 	@Override
-	public List<TransakcjaDAO> wczytajTransakcjeZwrotCustomer(int id_customer) {
+	public List<TransakcjaDAO> wczytajTransakcjeZwrotCustomer(int id_customer) {	// CUSTOMER
 		loadConnection();
 		List<TransakcjaDAO> list = new ArrayList<>();
 		PreparedStatement wczytajStatement = null;
 		ResultSet results = null;
 		
 		try {
-			wczytajStatement = connection.prepareStatement("SELECT * FROM transakcja WHERE customer_id=? AND zatwierdzona=FALSE ORDER BY id_transakcja");
+			wczytajStatement = connection.prepareStatement("SELECT * FROM transakcja WHERE customer_id=? "
+					+ "AND zatwierdzona=FALSE ORDER BY (DATEDIFF(day, dataWypozyczenia, CURRENT_DATE) - dlugoscWypozyczenia) DESC");	// previously "ORDER BY id_transakcja"
 			results = wczytajStatement.executeQuery();
 			while(results.next()) {
 				TransakcjaDAO dawcaTransakcja = zmienRekordNaTransakcje(results);

@@ -13,9 +13,10 @@
 
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="glowna">O nas</a>
-    <a href="menu">Nasze Auta</a>
-    <a href="login">Zaloguj się</a>
+    <a href="glowna_zalogowanyCustomer">O nas</a>
+    <a href="menu_zalogowanyCustomer">Nasze Auta</a>
+    <a href="logout">Wyloguj się</a>
+    <a href="autaUzytkownika">Zwróć auta</a>
 </div>
 
 
@@ -26,45 +27,51 @@
 <div>
 
 	<table id = "customers">
-		<tr>
-			<th>id</th>
-			<th>Marka</th>
-			<th>Model</th>
-			<th>Cena za dzień</th>
-			<th>Kaucja</th>
-		</tr>
-	
-		<tr>
-			<td>1</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		
-		<tr>
-			<td>2</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
+		<thead>
+			<tr>
+				<th>Transaction No</th>
+				<th>User</th>
+				<th>User No</th>
+				<th>Car model</th>
+				<th>Daily price [PLN]</th>
+				<th>Deposit [PLN]</th>
+				<th>Rental date</th>
+				<th>Rental time</th>
+				<th>Zwroc</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			
+				<tr th:each="transakcja: ${zwroty}">
+					<td><span th:text="${transakcja.id_transakcja}">id_transakcja</span></td>
+					<td><span th:text="${transakcja.customer_login}">customer_login</span></td>
+					<td><span th:text="${transakcja.customer_id}">customer_id</span></td>
+					<td><span th:text="${transakcja.car_model}">car_model</span></td>
+					<td><span th:text="${transakcja.car_cena}">car_cena</span></td>
+					<td><span th:text="${transakcja.car_kaucja}">car_kaucja</span></td>
+					<td><span th:text="${transakcja.car_dataWypozyczenia}">car_dataWypozyczenia</span></td>
+					<td><span th:text="${transakcja.car_dlugoscWypozyczenia}">car_dlugoscWypozyczenia</span></td>
+					<td><a th:href="@{/zwroc(id_car=${car.id_car})}">zwroc</a></td>
+				</tr>
+		</tbody>
 	</table>
 </div>
-</table>
- <div style="display: block; text-align: center">
-    <label for="noOfCar">
-				<b style="color: #FFFF" >Zwróć auto o numerze </b>
-			</label>
-			<input type="text" placeholder="Number of car" name="noCar" required > 
-    </div>
-    
-    <div style="display: block; text-align: center; margin-left: 15%; margin-top: 2%">
-    
-    <button type="rent">Zatwierdź zwrot</button>
-    
-    </div>
 
-</div>
+	<form action="zwroc" method="post">
+	 	<div style="display: block; text-align: center">
+	    		<label for="noOfCar">
+					<b style="color: #FFFF" >Zwróć auto o numerze </b>
+				</label>
+					<input type="text" placeholder="Number of car" name="noCar" required > 
+	    </div>
+	    
+	    <div style="display: block; text-align: center; margin-left: 15%; margin-top: 2%">
+	    
+	    	<button type="submit">Zatwierdź zwrot</button>
+	    
+		</div>
+	</form>
+
 </body>
 </html>

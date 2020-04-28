@@ -17,4 +17,5 @@ public interface ICRUD {
 	public boolean updateCustomer(Customer loadedCustomerForEdit);
 	public boolean obciazKonto(int id_customer, int kwota);
 	public boolean checkDowod(String dowod);
+	public int getId_customer(String login);
 }

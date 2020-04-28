@@ -42,10 +42,10 @@ public class LoginController {
             model.addAttribute("customer", customer);
             System.out.println("If username managed to log in successfully: " + ifLoggedSuccessfully);
             if(customer.isRoot())
-    			return "menu_zalogowanyAdmin";
+    			return "adminZabezpieczenie@#$)@#$@#(!@))(#))#)!(@)$adsosadkkadkas#@)(@/menu_zalogowanyAdmin";
             if(ifLoggedSuccessfully){
                 System.out.println("You've been logged successfully!\nWelcome " + customer.getLogin());
-                return "menu_zalogowanyCustomer";	// TODO - wymienic na odpowiednie menu po zalogowaniu
+                return "menu_zalogowanyCustomer";
 //                DOPISAC JS KOMUNIKAT - KOPIA Z POWYZSZEGO System.out.println
             }
             else {

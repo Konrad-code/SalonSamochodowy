@@ -52,7 +52,7 @@ public class CustomerDAO extends CRUD {
 		loadConnection();
 		
 		try {
-			tryLoginStatement = connection.prepareStatement("SELECT dowod, saldo, root FROM customer WHERE (login=? AND password=?);");
+			tryLoginStatement = connection.prepareStatement("SELECT saldo, root FROM customer WHERE (login=? AND password=?);");
 			
 			tryLoginStatement.setString(1, login);
 			tryLoginStatement.setString(2, password);
@@ -61,10 +61,11 @@ public class CustomerDAO extends CRUD {
 			
 			if(loggedData.next()) {
 				System.out.println("Query `trylogin` executed successfully");
-				Dowod = loggedData.getString("dowod");
+//				Nick = loggedData.getString("dowod"); // update customer with nickname functionality to log on unique nick not on login - login will be preserved from stealing data in app
 				Saldo = loggedData.getInt("saldo");
 				Root = loggedData.getBoolean("root");
-				System.out.println("Player dowod: " + Dowod + " | Saldo: " + Saldo + " | Root: " + Root);
+				Login = login;
+				System.out.println("Player saldo: " + Saldo + " | Root: " + Root);
 				ifSuccessfullyLogged = true;
 			}
 		} catch (SQLException e) {

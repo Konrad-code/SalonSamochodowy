@@ -98,6 +98,32 @@ public abstract class CRUD extends ConnectDatabase implements ICRUD {
 	}
 	
 	@Override
+	public int getId_customer(String login) {
+		loadConnection();
+		ResultSet rs = null;
+		PreparedStatement getSaldoStatement = null;
+		int id_customer = 0;
+		
+		try {
+			getSaldoStatement = connection.prepareStatement("SELECT id_customer FROM customer WHERE login=?;");
+			getSaldoStatement.setString(1, login);
+			System.out.println("Executing query `getid`('" + login + "')");
+			rs = getSaldoStatement.executeQuery();
+			if(rs.next())
+				id_customer = rs.getInt("id_customer");
+			else
+				System.out.println("No user with specified login");
+		} catch (SQLException e) {
+			System.err.println("Failed to execute query `getid` on database: " + e.getMessage());
+		} finally {
+			try { rs.close(); } catch (Exception e) { /* leave action */ }
+			try { getSaldoStatement.close(); } catch (Exception e) { /* leave action */ }
+			closeConnection();
+		}
+		return id_customer;
+	}
+	
+	@Override
 	public boolean obciazKonto(int id_customer, int kwota) {
 		PreparedStatement updateSaldoStatement = null;
 		loadConnection();

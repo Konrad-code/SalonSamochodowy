@@ -12,8 +12,8 @@
 
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="glowna">O nas</a>
-    <a href="menu">Nasze Auta</a>
+    <a href="glowna_zalogowanyCustomer">O nas</a>
+    <a href="menu_zalogowanyCustomer">Nasze Auta</a>
     <a href="logout">Wyloguj się</a>
     <a href="autaUzytkownika">Zwróć auta</a>
     
@@ -36,12 +36,12 @@
 
 		<tbody>
 			
-				<tr th:each="samochody: ${samochody}">
-					<td><span th:text="${samochody.marka}">marka</span></td>
-					<td><span th:text="${samochody.model}">model</span></td>
-					<td><span th:text="${samochody.cena}">Cena</span></td>
-					<td><span th:text="${samochody.kaucja}">Kaucja</span></td>
-					<td><a href="onclick">Zobacz</a></td>
+				<tr th:each="car: ${samochody}">
+					<td><span th:text="${car.marka}">marka</span></td>
+					<td><span th:text="${car.model}">model</span></td>
+					<td><span th:text="${car.cena}">Cena</span></td>
+					<td><span th:text="${car.kaucja}">Kaucja</span></td>
+					<td><a th:href="@{/onclick(id_car=${car.id_car})}">Zobacz</a></td>
 				</tr>
 		</tbody>
 	</table>
