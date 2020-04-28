@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Twoje Auta</title>
+	<link rel="stylesheet" type="text/css" href="Style.css">
+	<link rel="stylesheet" type="text/css" href="sidenav.css">
+	<link rel="stylesheet" type="text/css" href="slider.css">
+	<script src="animacjaPaska.js"></script>
+	<script src="menu.js"></script>
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="glowna_zalogowanyAdmin">O nas</a>
+    <a href="menu_zalogowanrAdmin">Nasze Auta</a>
+    <a href="logout">Wyloguj się</a>
+    <a href="autaUzytkownikaAdmin">Zwróć auta</a>
+    <a href="adminZabezpieczenie@#$)@#$@#(!@))(#))#)!(@)$adsosadkkadkas#@)(@/adminPanel">Admin panel</a></div>
+    
+</div>
+
+
+<span style="font-size:30px;color: #FFFF;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+
+<h2 style="text-align: center; color: #FFFF; text-size: 50px">Twoje auta</h2>
+
+<div>
+
+	<table id = "customers">
+		<thead>
+			<tr>
+				<th>Transaction No</th>
+				<th>User</th>
+				<th>User No</th>
+				<th>Car model</th>
+				<th>Daily price [PLN]</th>
+				<th>Deposit [PLN]</th>
+				<th>Rental date</th>
+				<th>Rental time</th>
+				<th>Zwroc</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			
+				<tr th:each="transakcja: ${zwroty}">
+					<td><span th:text="${transakcja.id_transakcja}">id_transakcja</span></td>
+					<td><span th:text="${transakcja.customer_login}">customer_login</span></td>
+					<td><span th:text="${transakcja.customer_id}">customer_id</span></td>
+					<td><span th:text="${transakcja.car_model}">car_model</span></td>
+					<td><span th:text="${transakcja.car_cena}">car_cena</span></td>
+					<td><span th:text="${transakcja.car_kaucja}">car_kaucja</span></td>
+					<td><span th:text="${transakcja.car_dataWypozyczenia}">car_dataWypozyczenia</span></td>
+					<td><span th:text="${transakcja.car_dlugoscWypozyczenia}">car_dlugoscWypozyczenia</span></td>
+					<td><a th:href="@{/zwroc(id_car=${car.id_car})}">zwroc</a></td>
+				</tr>
+		</tbody>
+	</table>
+</div>
+
+	<form action="zwroc" method="post">
+	 	<div style="display: block; text-align: center">
+	    		<label for="noOfCar">
+					<b style="color: #FFFF" >Zwróć auto o numerze </b>
+				</label>
+					<input type="text" placeholder="Number of car" name="noCar" required > 
+	    </div>
+	    
+	    <div style="display: block; text-align: center; margin-left: 15%; margin-top: 2%">
+	    
+	    	<button type="submit">Zatwierdź zwrot</button>
+	    
+		</div>
+	</form>
+
+</body>
+</html>
