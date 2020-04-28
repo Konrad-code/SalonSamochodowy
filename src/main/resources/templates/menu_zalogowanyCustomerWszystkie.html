@@ -37,12 +37,12 @@
 
 		<tbody>
 			
-				<tr th:each="car: ${samochody}">
+				<tr th:each="car: ${wszystkieSamochody}">
 					<td><span th:text="${car.marka}">marka</span></td>
 					<td><span th:text="${car.model}">model</span></td>
 					<td><span th:text="${car.cena}">Cena</span></td>
 					<td><span th:text="${car.kaucja}">Kaucja</span></td>
-					<td><a th:href="@{/onclick(id_car=${car.id_car})}">Zobacz</a></td>
+					<td><a th:href="@{/onclickWszystkie(id_carWszystkie=${car.id_car})}">Zobacz</a></td>
 				</tr>
 		</tbody>
 	</table>

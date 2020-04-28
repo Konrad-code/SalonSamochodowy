@@ -1,5 +1,7 @@
 package com.konrad_janek.SalonSamochodowy.Controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +18,9 @@ public class AutaUzytkownikaController {
 FabrykaTransakcji fabrykaTransakcji = new FabrykaTransakcji();
 	
 	@GetMapping("/autaUzytkownika")
-	public String listaAutPage(@ModelAttribute CustomerDAO customer, Model model) {
+	public String listaAutPage(HttpSession session, Model model) {
 		System.out.println("Entered @GetMapping `autaUzytkownika` ");
+		CustomerDAO customer = (CustomerDAO)session.getAttribute("customer");
 		int id_customer = customer.getId_customer(customer.getLogin()); 	// when NICK added for user - change to nick verification credentials
 		System.out.println("Login customer: " + customer.getLogin());
 		System.out.println("ID CUSTOMER: " + id_customer);

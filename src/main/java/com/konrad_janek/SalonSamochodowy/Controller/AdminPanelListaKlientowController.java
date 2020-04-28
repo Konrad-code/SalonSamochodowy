@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import com.konrad_janek.SalonSamochodowy.Accounts.CustomerDAO;
 
 @Controller
-public class adminPanelEdycjaDanychUzytkownikaController {
+public class AdminPanelListaKlientowController {
 /*
 	@GetMapping("/adminPanelOczekujaceZwroty")
 	public String adminPanelZwrotyPage() {
@@ -16,13 +16,13 @@ public class adminPanelEdycjaDanychUzytkownikaController {
 		if(customer == null)
 			return "login";
 		if(customer.isRoot())
-			return "adminPanelEdycjaDanychUzytkownika";
+			return "adminPanelListaKlientow";
 		return "login";
 	}*/
 	
 	
-	@GetMapping("/adminPanelEdycjaDanychUzytkownika")
+	@GetMapping("/adminPanelListaKlientow")
 	public String onasPage() {
-		return "adminPanelEdycjaDanychUzytkownika";
+		return "adminPanelListaKlientow";
 	}
 }

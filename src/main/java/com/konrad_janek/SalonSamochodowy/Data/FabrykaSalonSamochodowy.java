@@ -12,17 +12,17 @@ import com.konrad_janek.SalonSamochodowy.Templates.IFabrykaSalonSamochodowy;
 public class FabrykaSalonSamochodowy extends ConnectDatabase implements IFabrykaSalonSamochodowy{
 
 	private static FabrykaSalonSamochodowy single_instance = null;
-	private static ArrayList<Samochod> listaSamochody = new ArrayList<Samochod>();
-	private static ArrayList<Samochod> listaWszystkieSamochody = new ArrayList<Samochod>();
+	private static ArrayList<Samochod> listaSamochody = new ArrayList<Samochod>();				// DOSTEPNE AUTA LIST
+	private static ArrayList<Samochod> listaWszystkieSamochody = new ArrayList<Samochod>();		// FLOTA SALONU LIST
 
-	public static FabrykaSalonSamochodowy getInstance()
+	public static FabrykaSalonSamochodowy getInstance()					// 	PART 1 FLOTA SALONU CONSTRUCTOR
     {
         if (single_instance == null)
             single_instance = new FabrykaSalonSamochodowy();
         return single_instance;
     }
 
-	private FabrykaSalonSamochodowy() {
+	private FabrykaSalonSamochodowy() {									// PART 2 FLOTA SALONU CONSTRUCTOR
 		listaWszystkieSamochody.addAll(wczytajWszystkieSamochody());
 		
 		/* Dane listy samochodow ktore w pozniejszej fazie projektu zostaly zaciagane z bazy danych #depreciated
@@ -49,7 +49,7 @@ public class FabrykaSalonSamochodowy extends ConnectDatabase implements IFabryka
 		wypiszSamochody();
 	}
 	
-	public FabrykaSalonSamochodowy(boolean ifShowAll) {
+	public FabrykaSalonSamochodowy(boolean ifShowAll) {					// DOSTEPNE AUTA CONSTRUCTOR
 		listaSamochody.addAll(wczytajSamochody());
 		wypiszSamochody();
 	}
@@ -79,7 +79,7 @@ public class FabrykaSalonSamochodowy extends ConnectDatabase implements IFabryka
 	}
 
 	@Override
-	public List<Samochod> wczytajSamochody() {
+	public List<Samochod> wczytajSamochody() {							// DOSTEPNE AUTA LOAD
 		loadConnection();
 		List<Samochod> list = new ArrayList<>();
 		PreparedStatement wczytajStatement = null;
@@ -103,7 +103,7 @@ public class FabrykaSalonSamochodowy extends ConnectDatabase implements IFabryka
 	}
 	
 	@Override
-	public List<Samochod> wczytajWszystkieSamochody() {
+	public List<Samochod> wczytajWszystkieSamochody() {					// FLOTA SALONU LOAD
 		loadConnection();
 		List<Samochod> list = new ArrayList<>();
 		PreparedStatement wczytajStatement = null;
@@ -126,11 +126,11 @@ public class FabrykaSalonSamochodowy extends ConnectDatabase implements IFabryka
 		return list;
 	}
 
-	public ArrayList<Samochod> getListaSamochody() {
+	public ArrayList<Samochod> getListaSamochody() {					// DOSTEPNE AUTA GETTER
 		return listaSamochody;
 	}
 	
-	public ArrayList<Samochod> getListaWszystkieSamochody() {
+	public ArrayList<Samochod> getListaWszystkieSamochody() {			// FLOTA SALONU GETTER
 		return listaWszystkieSamochody;
 	}
 }

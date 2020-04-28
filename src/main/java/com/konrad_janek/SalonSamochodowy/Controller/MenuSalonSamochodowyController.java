@@ -13,13 +13,55 @@ import com.konrad_janek.SalonSamochodowy.Data.FabrykaSalonSamochodowy;
 @Controller
 public class MenuSalonSamochodowyController {
 
-	FabrykaSalonSamochodowy fabrykaWszystkichAut = FabrykaSalonSamochodowy.getInstance();
-	FabrykaSalonSamochodowy fabrykaSalonSamochodowy = new FabrykaSalonSamochodowy(true);
+	FabrykaSalonSamochodowy fabrykaWszystkichAut = FabrykaSalonSamochodowy.getInstance();	// FLOTA SALONU
+	FabrykaSalonSamochodowy fabrykaSalonSamochodowy = new FabrykaSalonSamochodowy(true);	// DOSTEPNE AUTA
+	
+//////////////////////////////////////////		DOSTEPNE AUTA   	/////////////////////////////////////////////////////////	
 	
 	@GetMapping("/menu")
-	public String listaAutPage(Model model) {
-		model.addAttribute("samochody", fabrykaSalonSamochodowy.getListaSamochody());
+	public String menu(Model model) {
+		model.addAttribute("wszystkieSamochody", fabrykaSalonSamochodowy.getListaSamochody());
 		return "menu";
+	}
+	
+	@GetMapping("/menu_zalogowanyCustomer")
+	public String menu_zalogowanyCustomer(Model model, HttpSession session) {
+		model.addAttribute("dostepneSamochody", fabrykaSalonSamochodowy.getListaSamochody());
+		CustomerDAO customer = (CustomerDAO)session.getAttribute("customer");
+		System.out.println("Login of customer entering menu_zalogowanyCustomer: " + customer.getLogin());
+		return "menu_zalogowanyCustomer";
+	}
+	
+	@GetMapping("/adminZabezpieczenie@#$)@#$@#(!@))(#))#)!(@)$adsosadkkadkas#@)(@/menu_zalogowanyAdmin")
+	public String menu_zalogowanyAdmin(Model model, HttpSession session) {
+		model.addAttribute("dostepneSamochody", fabrykaSalonSamochodowy.getListaSamochody());
+		CustomerDAO customer = (CustomerDAO)session.getAttribute("customer");
+		System.out.println("Login of Admin customer entering menu_zalogowanyAdmin: " + customer.getLogin());
+		return "menu_zalogowanyAdmin";
+	}
+	
+//////////////////////////////////////////    FLOTA SALONU   /////////////////////////////////////////////////////////
+	
+	@GetMapping("/menu_wszystkie")
+	public String menu_wszystkie(Model model) {
+		model.addAttribute("wszystkieSamochody", fabrykaWszystkichAut.getListaWszystkieSamochody());
+		return "menu_wszystkie";
+	}
+	
+	@GetMapping("/menu_zalogowanyCustomerWszystkie")
+	public String menu_zalogowanyCustomerWszystkie(Model model, HttpSession session) {
+		model.addAttribute("wszystkieSamochody", fabrykaWszystkichAut.getListaWszystkieSamochody());
+		CustomerDAO customer = (CustomerDAO)session.getAttribute("customer");
+		System.out.println("Login of customer entering menu_zalogowanyCustomer: " + customer.getLogin());
+		return "menu_zalogowanyCustomerWszystkie";
+	}
+	
+	@GetMapping("/adminZabezpieczenie@#$)@#$@#(!@))(#))#)!(@)$adsosadkkadkas#@)(@/menu_zalogowanyAdminWszystkie")
+	public String menu_zalogowanyAdminWszystkie(Model model, HttpSession session) {
+		model.addAttribute("wszystkieSamochody", fabrykaWszystkichAut.getListaWszystkieSamochody());
+		CustomerDAO customer = (CustomerDAO)session.getAttribute("customer");
+		System.out.println("Login of Admin customer entering menu_zalogowanyAdminWszystkie: " + customer.getLogin());
+		return "menu_zalogowanyAdminWszystkie";
 	}
 	
 	@GetMapping("/rent()")		// TODO - okodowac wypozyczenie (przede wszystkim w uzaleznieniu czy auto nie jest wypozyczone. 
@@ -35,19 +77,5 @@ public class MenuSalonSamochodowyController {
 			return "login";
 	}
 	
-	@GetMapping("/menu_zalogowanyAdmin")
-	public String menu_zalogowanyAdmin(Model model, HttpSession session) {
-		model.addAttribute("samochody", fabrykaSalonSamochodowy.getListaSamochody());
-		CustomerDAO customer = (CustomerDAO)session.getAttribute("customer");
-		System.out.println("Login of Admin customer entering menu_zalogowanyAdmin: " + customer.getLogin());
-		return "menu_zalogowanyCustomer";
-	}
 	
-	@GetMapping("/menu_zalogowanyCustomer")
-	public String menu_zalogowanyCustomer(Model model, HttpSession session) {
-		model.addAttribute("samochody", fabrykaSalonSamochodowy.getListaSamochody());
-		CustomerDAO customer = (CustomerDAO)session.getAttribute("customer");
-		System.out.println("Login of customer entering menu_zalogowanyCustomer: " + customer.getLogin());
-		return "menu_zalogowanyCustomer";
-	}
 }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import com.konrad_janek.SalonSamochodowy.Accounts.CustomerDAO;
 
 @Controller
-public class logoutController {
+public class LogoutController {
 @GetMapping("/logout")
 	public String logout(HttpSession session,
 				@ModelAttribute CustomerDAO cleanCustomer) {
