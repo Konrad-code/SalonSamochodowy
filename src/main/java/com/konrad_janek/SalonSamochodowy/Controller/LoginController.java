@@ -1,5 +1,9 @@
 package com.konrad_janek.SalonSamochodowy.Controller;
 
+import java.net.http.HttpRequest;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,19 +18,20 @@ import com.konrad_janek.SalonSamochodowy.Accounts.CustomerDAO;
 public class LoginController {
 	
 	@GetMapping("/login")
-	public String loginPage(Model model) {
-		CustomerDAO cleanCustomer = new CustomerDAO("", 0, false);
+	public String loginPage(Model model, HttpSession session) {
+		CustomerDAO cleanCustomer = new CustomerDAO();
 		model.addAttribute("cleanCustomer", cleanCustomer);
+		session.setAttribute("customer", cleanCustomer);
 		return "login";
 	}
 	
 	@PostMapping("/login")
-	public String verifyLoginPage(@ModelAttribute CustomerDAO cleanCustomer, Model model,
+	public String verifyLoginPage(@ModelAttribute CustomerDAO cleanCustomer, HttpSession session,
 									@RequestParam("Login") String loginProvided,
 									@RequestParam("Haslo") String passwordProvided) {
 		boolean ifTableExists = CRUD.checkIfTableExistsInDatabase();
 		boolean ifLoggedSuccessfully, ifDataCorrect = false;
-		CustomerDAO customer = new CustomerDAO("", 0, false);
+		CustomerDAO customer = new CustomerDAO();
 		System.out.println("Login provided: " + loginProvided + " | Password provided: " 
 							+ passwordProvided + " and table `customer` exists? " + ifTableExists);
 		if((loginProvided.length() >= 4 && loginProvided.length() <= 30) && (passwordProvided.length() >= 8 
@@ -36,8 +41,9 @@ public class LoginController {
             System.out.println("Provided data incorrect. Login and password have to consist of between 4 and 30 characters");
 		if(ifTableExists && ifDataCorrect){
             ifLoggedSuccessfully = cleanCustomer.tryLogin(loginProvided, passwordProvided);
-            customer = new CustomerDAO(cleanCustomer.getLogin(), cleanCustomer.getSaldo(), cleanCustomer.isRoot());
-            model.addAttribute("customer", customer);
+//            customer = new CustomerDAO(cleanCustomer.getLogin(), cleanCustomer.getSaldo(), cleanCustomer.isRoot());
+            session.setAttribute("customer", cleanCustomer);
+            customer = (CustomerDAO)session.getAttribute("customer");
             System.out.println("If username managed to log in successfully: " + ifLoggedSuccessfully);
             if(customer.isRoot())
     			return "adminZabezpieczenie@#$)@#$@#(!@))(#))#)!(@)$adsosadkkadkas#@)(@/menu_zalogowanyAdmin";

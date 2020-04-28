@@ -13,6 +13,7 @@ public class FabrykaSalonSamochodowy extends ConnectDatabase implements IFabryka
 
 	private static FabrykaSalonSamochodowy single_instance = null;
 	private static ArrayList<Samochod> listaSamochody = new ArrayList<Samochod>();
+	private static ArrayList<Samochod> listaWszystkieSamochody = new ArrayList<Samochod>();
 
 	public static FabrykaSalonSamochodowy getInstance()
     {
@@ -22,7 +23,7 @@ public class FabrykaSalonSamochodowy extends ConnectDatabase implements IFabryka
     }
 
 	private FabrykaSalonSamochodowy() {
-		listaSamochody.addAll(wczytajSamochody());
+		listaWszystkieSamochody.addAll(wczytajWszystkieSamochody());
 		
 		/* Dane listy samochodow ktore w pozniejszej fazie projektu zostaly zaciagane z bazy danych #depreciated
 		listaSamochody.add(new Samochod("Mercedes", "Vito", 25, 5000));
@@ -45,6 +46,11 @@ public class FabrykaSalonSamochodowy extends ConnectDatabase implements IFabryka
 		listaSamochody.add(new Samochod("SRT", "Viper", 60, 28000));
 		listaSamochody.add(new Samochod("BMW", "M3", 40, 13000));	
 		*/
+		wypiszSamochody();
+	}
+	
+	public FabrykaSalonSamochodowy(boolean ifShowAll) {
+		listaSamochody.addAll(wczytajSamochody());
 		wypiszSamochody();
 	}
 	
@@ -80,7 +86,31 @@ public class FabrykaSalonSamochodowy extends ConnectDatabase implements IFabryka
 		ResultSet results = null;
 		
 		try {
-			wczytajStatement = connection.prepareStatement("SELECT * FROM car");
+			wczytajStatement = connection.prepareStatement("SELECT * FROM car WHERE customer_id IS NULL");
+			results = wczytajStatement.executeQuery();
+			while(results.next()) {
+				Samochod dawcaSamochod = zmienRekordNaSamochod(results);
+				list.add(dawcaSamochod);
+			}
+		} catch (SQLException e) {
+			System.err.println("Niepowodzenie przy wykonywaniu komendy `wczytajSamochody`: " + e.getMessage());
+		} finally {
+			try { results.close(); } catch (Exception e) { /* leave action */ }
+			try { wczytajStatement.close(); } catch (Exception e) { /* leave action */ }
+			closeConnection();
+		}
+		return list;
+	}
+	
+	@Override
+	public List<Samochod> wczytajWszystkieSamochody() {
+		loadConnection();
+		List<Samochod> list = new ArrayList<>();
+		PreparedStatement wczytajStatement = null;
+		ResultSet results = null;
+		
+		try {
+			wczytajStatement = connection.prepareStatement("SELECT * FROM car;");
 			results = wczytajStatement.executeQuery();
 			while(results.next()) {
 				Samochod dawcaSamochod = zmienRekordNaSamochod(results);
@@ -98,5 +128,9 @@ public class FabrykaSalonSamochodowy extends ConnectDatabase implements IFabryka
 
 	public ArrayList<Samochod> getListaSamochody() {
 		return listaSamochody;
+	}
+	
+	public ArrayList<Samochod> getListaWszystkieSamochody() {
+		return listaWszystkieSamochody;
 	}
 }

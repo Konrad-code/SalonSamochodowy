@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Aston Martin</title>
+    <link rel="stylesheet" type="text/css" href="slider.css">
+    <link rel="stylesheet" type="text/css" href="sidenav.css">
+    <link rel="stylesheet" type="text/css" href="Style.css">
+    <script src="animacjaPaska.js"></script>
+    <script src="slider.js"></script>
+    <script src="rent.js"></script>
+
+</head>
+<body>
+
+<h2 style=" text-size: 40px; color: #FFFF; text-align: center">Aston Martin DB9</h2></br>
+<div class="row">
+	<div class="column">
+				<div class="slideshow-container">
+
+    <div class="mySlides fade" style="display: block">
+        <img src="aston1.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides fade">
+        <img src="aston2.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides fade">
+        <img src="aston3.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides fade">
+        <img src="aston4.jpg" style="width:100%">
+    </div>
+
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+
+<div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>
+
+
+</div>
+	</div>
+
+
+	<div class="column">
+		<table id = "spec">
+		    <thead>
+		    <tr>
+		        <th>Specyfikacja</th>
+				<th>samochodu</th>
+		    </tr>
+		    </thead>
+		
+		   <tbody>
+    <tr>
+        <td>Marka</td>
+        <td>Aston Martin</td>
+    </tr>
+    <tr>
+        <td>Model</td>
+        <td>DB9</td>
+    </tr>
+    <tr>
+        <td>Rok produkcji</td>
+        <td>2016</td>
+    </tr>
+    <tr>
+        <td>Pojemność silnika</td>
+        <td>6 000</td>
+    </tr>
+    <tr>
+        <td>Moc</td>
+        <td>575 KM</td>
+    </tr>
+    <tr>
+        <td>Rodzaj paliwa</td>
+        <td>Benzyna</td>
+    </tr>
+    <tr>
+        <td>Skrzynia biegów</td>
+        <td>Automat</td>
+    </tr>
+
+    <tr>
+        <td>Liczba miejsc</td>
+        <td>4</td>
+    </tr>
+
+    <tr>
+        <td>Typ</td>
+        <td>cabrio</td>
+    </tr>
+
+    <tr>
+        <td>Napęd</td>
+        <td>Na tylne koła</td>
+    </tr>
+
+    </tbody>
+</table>
+		
+		<div style="display: block; text-align: center">
+		    <label for="noOfDays">
+				</br><b style="color: #FFFF" >Wypożycz na </b>
+			</label>
+		
+			<input type="text" placeholder="Number of days" name="days" required > 
+			
+			<p id="demo" style="color: #FFFF; text-align: right"></p></br>
+		</div>
+	    
+		<div style="display: block; text-align: center; margin-left: 15%; margin-top: 2%">        
+			<button onclick="rent()">Wypożycz za 70 zł dziennie</button> 
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

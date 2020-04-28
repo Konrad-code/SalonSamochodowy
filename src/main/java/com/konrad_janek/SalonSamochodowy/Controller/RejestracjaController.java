@@ -1,5 +1,7 @@
 package com.konrad_janek.SalonSamochodowy.Controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +27,7 @@ import com.konrad_janek.SalonSamochodowy.Exceptions.WrongConfirmation;
 public class RejestracjaController {
 	
 	@PostMapping("/rejestracja")
-	public String verifyRegisterPage(@ModelAttribute CustomerDAO customer,
+	public String verifyRegisterPage(HttpSession session,
 									@RequestParam("Login") String loginProvided,
 									@RequestParam("Haslo") String passwordProvided,
 									@RequestParam("repetedHaslo") String passwordConfirmationProvided,
@@ -37,7 +39,7 @@ public class RejestracjaController {
         	String message = new String("Password: " + newCustomerToRegister.getPassword()
             + "\nUsername: " + newCustomerToRegister.getLogin() + "\nNickname: " + newCustomerToRegister.getDowod());
         	System.out.println(message);
-        	
+        	CustomerDAO customer = (CustomerDAO)session.getAttribute("customer");
         	if(customer.checkDowod(newCustomerToRegister.getDowod())) {
                 isFree = true;
                 if(!(isFree && customer.checkLogin(newCustomerToRegister.getLogin()))){

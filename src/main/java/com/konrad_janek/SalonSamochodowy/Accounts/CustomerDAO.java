@@ -13,17 +13,17 @@ import org.springframework.web.context.annotation.RequestScope;
 
 public class CustomerDAO extends CRUD {
 	
-//	{
-//		Login = "";
-//		Dowod = "";
-//		Saldo = 0;
-//		Root = false;
-//	}
-//	
-	private String Login = "";
-	private String Dowod = "";
-	private int Saldo = 0; 
-	private boolean Root = false;
+	{
+		Login = "";
+		Dowod = "";
+		Saldo = 0;
+		Root = false;
+	}
+	
+	private String Login;
+	private String Dowod;
+	private int Saldo;
+	private boolean Root;
 	public static int licznikInstancji = 0;
 	
 	public CustomerDAO() {
@@ -31,13 +31,13 @@ public class CustomerDAO extends CRUD {
 		System.out.println("Konstruktor CustomerDAO numer: " + licznikInstancji);
 	}
 	
-	public CustomerDAO(String login, int saldo, boolean root) {
-		licznikInstancji++;
-		System.out.println("Konstruktor CustomerDAO numer: " + licznikInstancji);
-		this.Login = login;
-		this.Saldo = saldo;
-		this.Root = root;
-	}
+//	public CustomerDAO(String login, int saldo, boolean root) {
+//		licznikInstancji++;
+//		System.out.println("Konstruktor CustomerDAO numer: " + licznikInstancji);
+//		this.Login = login;
+//		this.Saldo = saldo;
+//		this.Root = root;
+//	}
 	
 	public String getLogin() {
 		return Login;
@@ -80,7 +80,7 @@ public class CustomerDAO extends CRUD {
 				Saldo = loggedData.getInt("saldo");
 				Root = loggedData.getBoolean("root");
 				Login = login;
-				System.out.println("Player saldo: " + Saldo + " | Root: " + Root);
+				System.out.println("Customer login: " + Login + " | saldo: " + Saldo + " | Root: " + Root);
 				ifSuccessfullyLogged = true;
 			}
 		} catch (SQLException e) {
