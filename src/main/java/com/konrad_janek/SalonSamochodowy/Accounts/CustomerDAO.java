@@ -4,24 +4,39 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.context.annotation.RequestScope;
+
+
 public class CustomerDAO extends CRUD {
 	
-	{
-		Login = "";
-		Dowod = "";
-		Saldo = 0;
-		Root = false;
-	}
-	
-	private String Login;
-	private String Dowod;
-	private int Saldo; 
-	private boolean Root;
+//	{
+//		Login = "";
+//		Dowod = "";
+//		Saldo = 0;
+//		Root = false;
+//	}
+//	
+	private String Login = "";
+	private String Dowod = "";
+	private int Saldo = 0; 
+	private boolean Root = false;
 	public static int licznikInstancji = 0;
 	
 	public CustomerDAO() {
 		licznikInstancji++;
 		System.out.println("Konstruktor CustomerDAO numer: " + licznikInstancji);
+	}
+	
+	public CustomerDAO(String login, int saldo, boolean root) {
+		licznikInstancji++;
+		System.out.println("Konstruktor CustomerDAO numer: " + licznikInstancji);
+		this.Login = login;
+		this.Saldo = saldo;
+		this.Root = root;
 	}
 	
 	public String getLogin() {

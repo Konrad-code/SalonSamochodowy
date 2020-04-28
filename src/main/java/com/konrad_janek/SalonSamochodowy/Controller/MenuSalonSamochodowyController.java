@@ -3,8 +3,10 @@ package com.konrad_janek.SalonSamochodowy.Controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.konrad_janek.SalonSamochodowy.Accounts.CustomerDAO;
 import com.konrad_janek.SalonSamochodowy.Data.FabrykaSalonSamochodowy;
 
 @Controller
@@ -29,5 +31,11 @@ public class MenuSalonSamochodowyController {
 			return "menu";
 		else
 			return "login";
+	}
+	
+	@GetMapping("/menu_zalogowanyCustomer")
+	public String loginPage(Model model, @ModelAttribute CustomerDAO customer) {
+		System.out.println("Login: " + customer.getLogin());
+		return "menu_zalogowanyCustomer";
 	}
 }
