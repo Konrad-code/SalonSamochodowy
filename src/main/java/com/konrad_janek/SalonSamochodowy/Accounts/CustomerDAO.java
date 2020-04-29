@@ -92,4 +92,36 @@ public class CustomerDAO extends CRUD {
 		}
 		return ifSuccessfullyLogged;
 	}	
+
+	public boolean rentACar(int id_customer, int id_car, int dlugoscWypozyczenia) {
+		PreparedStatement carRentialStatement = null;
+		loadConnection();
+		boolean ifReservedCar = false;
+		
+		try {
+			carRentialStatement = connection.prepareStatement("UPDATE car SET customer_id=?, dlugoscWypozyczenia=?, dataWypozyczenia=CURRENT_DATE WHERE id_car=?;");
+			carRentialStatement.setInt(1, id_customer);
+			carRentialStatement.setInt(2, dlugoscWypozyczenia);
+			carRentialStatement.setInt(3, id_car);
+			System.out.println("Executing query `rentacar`(" + id_customer + ", " + id_car + ", " + dlugoscWypozyczenia + ")");
+			boolean ifSuccessfulUpdateToDb = carRentialStatement.execute();
+			if(ifSuccessfulUpdateToDb) {
+				System.out.println("Query `rentacar` executed successfully");
+				ifReservedCar = true;
+			}
+		} catch (SQLException e) {
+			System.err.println("Failed to execute query `rentacar` at database: " + e.getMessage());
+		} finally {
+			try { carRentialStatement.close(); } catch (Exception e) { /* leave action */ }
+			closeConnection();
+		}
+		return ifReservedCar;
+	}
+
+
+
+
+
+
+
 }

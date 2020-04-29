@@ -55,9 +55,11 @@ public abstract class CRUD extends ConnectDatabase implements ICRUD {
 			// MAY COMMENT IN FUTURE
 			System.out.println("Calling query `addCustomer`('" + newCustomer.getLogin() + "', '" 
 								+ newCustomer.getPassword() + "', '" + newCustomer.getDowod() + "')");
-			addCustomerStatement.executeUpdate();
-			System.out.println("Query `addCustomer` called successfully");
-			ifCustomerAdded = true;
+			boolean ifSuccessfully = addCustomerStatement.execute();
+			if(ifSuccessfully) {
+				System.out.println("Query `addCustomer` called successfully");
+				ifCustomerAdded = true;
+			}
 		} catch (SQLException e) {
 			System.err.println("Failed to execute query `addCustomer` at database: " + e.getMessage());
 		} finally {
@@ -68,8 +70,30 @@ public abstract class CRUD extends ConnectDatabase implements ICRUD {
 	}
 	
 	@Override
-	public boolean tryLogin(String login, String password) {
-		return false;}
+	public boolean addTransaction(int id_customer, int id_car) {
+		loadConnection();
+		PreparedStatement addTransactionStatement = null;
+		boolean ifTransactionAdded = false;
+		
+		try {
+			addTransactionStatement = connection.prepareStatement("INSERT INTO transaction (customer_id, car_id) VALUES(?,?)");
+			addTransactionStatement.setInt(1, id_customer);
+			addTransactionStatement.setInt(2, id_car);
+			// MAY COMMENT IN FUTURE
+			System.out.println("Calling query `addTransaction`(" + id_customer + ", " + id_car);
+			boolean ifSuccessfully = addTransactionStatement.execute();
+			if(ifSuccessfully) {
+				System.out.println("Query `addTransaction` called successfully");
+				ifTransactionAdded = true;
+			}
+		} catch (SQLException e) {
+			System.err.println("Failed to execute query `addTransaction` at database: " + e.getMessage());
+		} finally {
+			try { addTransactionStatement.close(); } catch (Exception e) { /* leave action */ }
+			closeConnection();
+		}
+		return ifTransactionAdded;
+	}
 	
 	@Override
 	public int getSaldo(int id_customer) {
@@ -124,16 +148,16 @@ public abstract class CRUD extends ConnectDatabase implements ICRUD {
 	}
 	
 	@Override
-	public boolean obciazKonto(int id_customer, int kwota) {
+	public boolean obciazKonto(int id_customer, int transactionBill) {
 		PreparedStatement updateSaldoStatement = null;
 		loadConnection();
 		boolean ifBilledAccount = false;
 		
 		try {
 			updateSaldoStatement = connection.prepareStatement("UPDATE customer SET saldo=? WHERE id_customer=?;");
-			updateSaldoStatement.setInt(1, kwota);
+			updateSaldoStatement.setInt(1, transactionBill);
 			updateSaldoStatement.setInt(2, id_customer);
-			System.out.println("Executing query `updatesaldo`('" + kwota + "')");
+			System.out.println("Executing query `updatesaldo`('" + transactionBill + "')");
 			boolean ifSuccessfulUpdateToDb = updateSaldoStatement.execute();
 			if(ifSuccessfulUpdateToDb) {
 				System.out.println("Query `updatesaldo` executed successfully");
@@ -146,7 +170,7 @@ public abstract class CRUD extends ConnectDatabase implements ICRUD {
 			closeConnection();
 		}
 		return ifBilledAccount;
-		}
+	}
 	
 	@Override
 	public boolean checkLogin(String login) {
@@ -198,6 +222,32 @@ public abstract class CRUD extends ConnectDatabase implements ICRUD {
 			closeConnection();
 		}
 		return dowodFree;
+	}
+	
+	@Override
+	public boolean checkIfCarFree(int id_car) {
+		loadConnection();
+		PreparedStatement checkCarFreeStatement = null;
+		ResultSet rs = null;
+		boolean carFree = false;
+		
+		try {
+			checkCarFreeStatement = connection.prepareStatement("SELECT * FROM car WHERE (id_car=? AND dlugoscWypozyczenia=0 AND customer_id IS NULL);");
+			checkCarFreeStatement.setInt(1, id_car);
+			System.out.println("Executing query `checkIfCarFree`('" + id_car + "')");
+			rs = checkCarFreeStatement.executeQuery();
+			if(rs.next()) {
+				System.out.println("Query `checkIfCarFree` called successfully so it means that car is free to rent");
+				carFree = true;
+			}
+		} catch (SQLException e) {
+			System.err.println("Failed to execute query `checkIfCarFree` at database: " + e.getMessage());
+		} finally {
+			try { rs.close(); } catch (Exception e) { /* leave action */ }
+			try { checkCarFreeStatement.close(); } catch (Exception e) { /* leave action */ }
+			closeConnection();
+		}
+		return carFree;
 	}
 	
 	@Override

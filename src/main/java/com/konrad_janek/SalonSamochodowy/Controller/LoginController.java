@@ -70,4 +70,9 @@ public class LoginController {
 		System.out.println("Switched to Register Form");
 		return "rejestracja";
 	}
+	
+	@GetMapping("/errorLogin")
+	public String errorLogin() {
+		return "errors/errorLogin";
+	}
 }

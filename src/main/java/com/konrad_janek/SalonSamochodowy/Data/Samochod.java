@@ -18,10 +18,13 @@ public class Samochod {
 	private String marka;
 	private String model;
 	private int cena;
-	int kaucja;
-	int id_car;
+	private int kaucja;
+	private int id_car;
 	private LocalDate dataWypozyczenia;
 	private int dlugoscWypozyczenia;
+	
+	public Samochod() {		// FOR `wczytajSamochod`(int id_car) INICIALIZATION PURPOSE
+	}
 	
 	public Samochod(String marka, String model, int cena, int kaucja, int id_car) {
 		this.marka = marka;
@@ -41,10 +44,6 @@ public class Samochod {
 		this.dataWypozyczenia = dataWypozyczenia;
 	}
 
-	public void setMarka(String marka) {
-		this.marka = marka;
-	}
-
 	public String getMarka() {
 		return marka;
 	}
@@ -53,16 +52,8 @@ public class Samochod {
 		return model;
 	}
 
-	public void setModel(String model) {
-		this.model = model;
-	}
-
 	public int getCena() {
 		return cena;
-	}
-
-	public void setCena(int cena) {
-		this.cena = cena;
 	}
 
 	public int getKaucja() {
@@ -73,27 +64,11 @@ public class Samochod {
 		return id_car;
 	}
 
-	public void setId_car(int id_car) {
-		this.id_car = id_car;
-	}
-
-	public void setKaucja(int kaucja) {
-		this.kaucja = kaucja;
-	}
-
 	public LocalDate getDataWypozyczenia() {
 		return dataWypozyczenia;
 	}
 
-	public void setDataWypozyczenia(LocalDate dataWypozyczenia) {
-		this.dataWypozyczenia = dataWypozyczenia;
-	}
-
 	public int getDlugoscWypozyczenia() {
 		return dlugoscWypozyczenia;
-	}
-
-	public void setDlugoscWypozyczenia(int dlugoscWypozyczenia) {
-		this.dlugoscWypozyczenia = dlugoscWypozyczenia;
 	}
 }

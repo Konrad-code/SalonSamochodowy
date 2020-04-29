@@ -3,6 +3,7 @@ package com.konrad_janek.SalonSamochodowy.Data;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,9 +74,36 @@ public class FabrykaSalonSamochodowy extends ConnectDatabase implements IFabryka
 		int cena = result.getInt("cena");
 		int kaucja = result.getInt("kaucja");
 		int id_car = result.getInt("id_car");
+		int dlugoscWypozyczenia = result.getInt("dlugoscWypozyczenia");
+		LocalDate dataWypozyczenia = result.getDate("dataWypozyczenia").toLocalDate();
 		
-		Samochod dawcaSamochod = new Samochod(marka, model, cena, kaucja, id_car);
+		Samochod dawcaSamochod = new Samochod(id_car, model, cena, kaucja, dataWypozyczenia, dlugoscWypozyczenia);
 		return dawcaSamochod;	
+	}
+	
+	@Override
+	public Samochod wczytajSamochod(int id_car) {							// FOR MAPPING METHOD FOR "RENT()" CALL
+		loadConnection();
+		Samochod dawcaSamochod = new Samochod();
+		PreparedStatement wczytajStatement = null;
+		ResultSet result = null;
+		
+		try {
+			wczytajStatement = connection.prepareStatement("SELECT * FROM car WHERE id_car=?");
+			wczytajStatement.setInt(1, id_car);
+			result = wczytajStatement.executeQuery();
+			if(result.next()) {
+				dawcaSamochod = zmienRekordNaSamochod(result);
+				System.out.println("Car has been found successfully");
+			}
+		} catch (SQLException e) {
+			System.err.println("Niepowodzenie przy wykonywaniu komendy `wczytajSamochod`: " + e.getMessage());
+		} finally {
+			try { result.close(); } catch (Exception e) { /* leave action */ }
+			try { wczytajStatement.close(); } catch (Exception e) { /* leave action */ }
+			closeConnection();
+		}
+		return dawcaSamochod;
 	}
 
 	@Override

@@ -10,12 +10,15 @@ public interface ICRUD {
 	public boolean checkLogin(String login);
 	public boolean deleteCustomer(String userToRemove);
 	public boolean deleteCustomers();
-	public boolean tryLogin(String login, String password);
+	public boolean tryLogin(String login, String password);								// CustomerDAO
 	public boolean addCustomer(Customer newCustomer);
 	public Customer getCustomerForEdit(String userToEdit);
 	public Customer zmienRekordNaCustomera(ResultSet result) throws SQLException;
 	public boolean updateCustomer(Customer loadedCustomerForEdit);
-	public boolean obciazKonto(int id_customer, int kwota);
+	public boolean obciazKonto(int id_customer, int transactionBill);
 	public boolean checkDowod(String dowod);
 	public int getId_customer(String login);
+	public boolean rentACar(int id_customer, int id_car, int dlugoscWypozyczenia);		// CustomerDAO
+	public boolean addTransaction(int id_customer, int id_car);
+	public boolean checkIfCarFree(int id_car);
 }
