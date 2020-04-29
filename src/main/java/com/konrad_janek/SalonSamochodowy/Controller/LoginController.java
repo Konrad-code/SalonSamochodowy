@@ -46,7 +46,7 @@ public class LoginController {
             customer = (CustomerDAO)session.getAttribute("customer");
             System.out.println("If username managed to log in successfully: " + ifLoggedSuccessfully);
             if(customer.isRoot())
-    			return "adminZabezpieczenie@#$)@#$@#(!@))(#))#)!(@)$adsosadkkadkas#@)(@/menu_zalogowanyAdmin";
+    			return "admin/menu_zalogowanyAdmin";
             if(ifLoggedSuccessfully){
                 System.out.println("You've been logged successfully!\nWelcome " + customer.getLogin());
                 return "menu_zalogowanyCustomer";

@@ -12,11 +12,11 @@
 
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="adminZabezpieczenie@#$)@#$@#(!@))(#))#)!(@)$adsosadkkadkas#@)(@/glowna_zalogowanyAdmin">O nas</a>
-    <a href="adminZabezpieczenie@#$)@#$@#(!@))(#))#)!(@)$adsosadkkadkas#@)(@/menu_zalogowanyAdmin">Dostepne auta</a>
-    <a href="adminZabezpieczenie@#$)@#$@#(!@))(#))#)!(@)$adsosadkkadkas#@)(@/menu_zalogowanyAdminWszystkie">Flota salonu</a>
-    <a href="adminZabezpieczenie@#$)@#$@#(!@))(#))#)!(@)$adsosadkkadkas#@)(@/autaUzytkownikaAdmin">Zwróć auta</a>
-    <a href="adminZabezpieczenie@#$)@#$@#(!@))(#))#)!(@)$adsosadkkadkas#@)(@/adminPanel">Admin panel</a>
+    <a href="glowna_zalogowanyAdmin">O nas</a>
+    <a href="menu_zalogowanyAdmin">Dostepne auta</a>
+    <a href="menu_zalogowanyAdminWszystkie">Flota salonu</a>
+    <a href="autaUzytkownikaAdmin">Zwróć auta</a>
+    <a href="adminPanel">Admin panel</a>
     <a href="logout">Wyloguj się</a>
 
     
@@ -39,12 +39,12 @@
 
 		<tbody>
 			
-				<tr th:each="car: ${dostepneSamochody}">
+				<tr th:each="car: ${wszystkieSamochody}">
 					<td><span th:text="${car.marka}">marka</span></td>
 					<td><span th:text="${car.model}">model</span></td>
 					<td><span th:text="${car.cena}">Cena</span></td>
 					<td><span th:text="${car.kaucja}">Kaucja</span></td>
-					<td><a th:href="@{/onclick(id_car=${car.id_car})}">Zobacz</a></td>
+					<td><a th:href="@{/onclickWszystkie(id_carWszystkie=${car.id_car})}">Zobacz</a></td>
 				</tr>
 		</tbody>
 	</table>

@@ -83,7 +83,7 @@ public class OnClickController {
 		
 		session.setAttribute("id_car", null);
 		if(customer.isRoot())
-			return "menu_zalogowanyAdmin";
+			return "admin/menu_zalogowanyAdmin";
 		else if(customer.getLogin().length() > 0)
 			return "menu_zalogowanyCutomer";
 		else
@@ -161,7 +161,7 @@ public class OnClickController {
 		
 		session.setAttribute("id_car", null);
 		if(customer.isRoot())
-			return "menu_zalogowanyAdmin";
+			return "admin/menu_zalogowanyAdmin";
 		else if(customer.getLogin().length() > 0)
 			return "menu_zalogowanyCutomer";
 		else

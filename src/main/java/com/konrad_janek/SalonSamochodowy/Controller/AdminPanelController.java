@@ -19,6 +19,35 @@ public class AdminPanelController {
 			return "adminPanel";
 		return "login";*/
 		
-		return "adminPanel";
+		return "admin/adminPanel";
 	}
+	
+	@GetMapping("/adminPanelEdycjaDanychUzytkownika")
+	public String adminPanelEdycjaDanychUzytkownika() {
+		return "admin/adminPanelEdycjaDanychUzytkownika";
+	}
+	
+	@GetMapping("/adminPanelListaAut")
+	public String adminPanelListaAut() {
+		return "admin/adminPanelListaAut";
+	}
+	
+	@GetMapping("/adminPanelListaKlientow")
+	public String adminPanelListaKlientow() {
+		return "admin/adminPanelListaKlientow";
+	}
+	
+	@GetMapping("/adminPanelOczekujaceZwroty")
+	public String adminPanelOczekujaceZwroty() {
+		return "admin/adminPanelOczekujaceZwroty";
+	}
+	
+	@GetMapping("/adminPanelWypozyczenia")
+	public String adminPanelWypozyczenia() {
+		return "admin/adminPanelWypozyczenia";
+	}
+	
+	
+	
+	
 }

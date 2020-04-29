@@ -32,12 +32,12 @@ public class MenuSalonSamochodowyController {
 		return "menu_zalogowanyCustomer";
 	}
 	
-	@GetMapping("/adminZabezpieczenie@#$)@#$@#(!@))(#))#)!(@)$adsosadkkadkas#@)(@/menu_zalogowanyAdmin")
+	@GetMapping("/menu_zalogowanyAdmin")
 	public String menu_zalogowanyAdmin(Model model, HttpSession session) {
 		model.addAttribute("dostepneSamochody", fabrykaSalonSamochodowy.getListaSamochody());
 		CustomerDAO customer = (CustomerDAO)session.getAttribute("customer");
 		System.out.println("Login of Admin customer entering menu_zalogowanyAdmin: " + customer.getLogin());
-		return "menu_zalogowanyAdmin";
+		return "admin/menu_zalogowanyAdmin";
 	}
 	
 //////////////////////////////////////////    FLOTA SALONU   /////////////////////////////////////////////////////////
@@ -56,12 +56,12 @@ public class MenuSalonSamochodowyController {
 		return "menu_zalogowanyCustomerWszystkie";
 	}
 	
-	@GetMapping("/adminZabezpieczenie@#$)@#$@#(!@))(#))#)!(@)$adsosadkkadkas#@)(@/menu_zalogowanyAdminWszystkie")
+	@GetMapping("/menu_zalogowanyAdminWszystkie")
 	public String menu_zalogowanyAdminWszystkie(Model model, HttpSession session) {
 		model.addAttribute("wszystkieSamochody", fabrykaWszystkichAut.getListaWszystkieSamochody());
 		CustomerDAO customer = (CustomerDAO)session.getAttribute("customer");
 		System.out.println("Login of Admin customer entering menu_zalogowanyAdminWszystkie: " + customer.getLogin());
-		return "menu_zalogowanyAdminWszystkie";
+		return "admin/menu_zalogowanyAdminWszystkie";
 	}
 	
 	@GetMapping("/rent()")		// TODO - okodowac wypozyczenie (przede wszystkim w uzaleznieniu czy auto nie jest wypozyczone. 
