@@ -3,18 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="StyleLogin.css">
-<title>Strona do logowania</title>
+<title>BŁĄD</title>
+<link rel="stylesheet" type="text/css" href="sidenav.css">
+<script src="menu.js"></script>
 </head>
 <body>
 
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="glowna">O nas</a>
+    <a href="menu">Dostepne auta</a>
+    <a href="menu_wszystkie">Flota salonu</a>
+    <a href="login">Zaloguj się</a>
+</div>
+
+<span style="font-size:30px;color: #FFFF;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+
+	<h1 style="color: #FFFF; font-size: 40px; text-align: center">BŁĘDNE HASŁO!!!</h1>
+
 	<form action="login" method="post">
 		<div class="container">
-			<label for="uname"><b>Login</b></label> <input type="text"
-				placeholder="Enter Username" name="Login" required> 
-				<h1>BLEDNE HASLO !!!</h1>
-				<label
-				for="psw"><b>Hasło:</b></label> <input type="password"
-				placeholder="Enter Password" name="Haslo" required>
+			<label for="uname" style="color: #FFFF">
+				<b>Login</b>
+			</label> 
+			<input type="text"placeholder="Enter Username" name="Login" required> 
+				
+				<label for="psw" style="color: #FFFF">
+					<b>Hasło:</b>
+				</label>
+				<input type="password"placeholder="Enter Password" name="Haslo" required>
 
 			<button type="submit">Zaloguj</button>
 		</div>

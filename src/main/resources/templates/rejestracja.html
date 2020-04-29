@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="StyleLogin.css">
 	<link rel="stylesheet" type="text/css" href="sidenav.css">
+	<link rel="stylesheet" type="text/css" href="StyleRejestracja.css">
 	<script src="animacjaPaska.js"></script>
+	<script src="sprawdzanieHasla.js"></script>
 <title>Zaloguj się</title>
 </head>
 <body>
@@ -19,41 +21,87 @@
 
 
 <span style="font-size:30px;color: #FFFF;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+<div class="row">
 
-
-
-	<form action="rejestracja" method="post">
-		<div class="container">
-			<label for="uname">
-				<b style="color: #FFFF" >Login</b>
-			</label>
-			<input type="text" placeholder="Enter Username" name="Login" required > 
-			
-			
-			<label
-				for="psw"><b style="color: #FFFF">Hasło</b>
-			</label> 
-			<input type="password" placeholder="Enter Password" name="Haslo" required>
-
-
-			<label
-				for="psw"><b style="color: #FFFF">Powtórz Hasło</b>
-			</label> 
-			<input type="password" placeholder="Enter Password" name="repetedHaslo" required>
-			
-			
-			<label for="uname">
-				<b style="color: #FFFF" >Dowód osobisty</b>
-			</label>
-			<input type="text" placeholder="Enter your ID" name="dowodOsobisty" required > 
-
-			<button type="submit">Zarejestruj</button>
-			<a href="login" style="color: #FFFF">Zaloguj</a>
-			
-		</div>
-		
-		
-	</form>
+	<div class="column">
+		<form action="rejestracja" method="post">
+			<div class="container">
+				<label for="uname">
+					<b style="color: #FFFF" >Login</b>
+				</label>
+				<input type="text" id="login" placeholder="Enter Username" name="Login" required > 
+				
+				
+				<label
+					for="psw"><b style="color: #FFFF">Hasło</b>
+				</label> 
+				<input type="password" id="psw" placeholder="Enter Password" name="Haslo" required>
+	
+	
+				<label
+					for="psw"><b style="color: #FFFF">Powtórz Hasło</b>
+				</label> 
+				<input type="password" id="psw2" placeholder="Enter Password" name="repetedHaslo" required>
+				
+				
+				<label for="uname">
+					<b style="color: #FFFF" >Dowód osobisty</b>
+				</label>
+				<input type="text" placeholder="Enter your ID" name="dowodOsobisty" required > 
+	
+				<button type="submit">Zarejestruj</button>
+				<a href="login" style="color: #FFFF">Zaloguj</a>
+			</div>
+		</form>
+	</div>
+	
+	<div class="column">
+	
+		<table id = "Warunki">
+		    <thead>
+		    <tr>
+		        <th>Warunek</th>
+				<th>Status</th>
+		    </tr>
+		    </thead>
+			    <tbody>
+			    	<tr>
+				        <td>Login: Długośc 8-20</td>
+				        <td><p id="loglength" class="invalid"></td>
+				    </tr>			    
+				    <tr>
+				        <td>Hasło: Mała litera</td>
+				        <td><p id="small" class="invalid"></p></td>
+				    </tr>
+				    <tr>
+				        <td>Hasło: Duża litera</td>
+				        <td><p id="capital" class="invalid"></p></td>
+				    </tr>
+				    <tr>
+				        <td>Hasło: Cyfra</td>
+				        <td><p id="number" class="invalid"></p></td>
+				    </tr>
+				    <tr>
+				        <td>Hasło: Znak specjalny</td>
+				        <td><p id="special" class="invalid"></p></td>
+				    </tr>
+				    <tr>
+				        <td>Hasło: Długość 8-30</td>
+				        <td><p id="passlength" class="invalid"></td>
+				    </tr>
+				    <tr>
+				        <td>Hasło: Hasła się zgadzają</td>
+				        <td><p id="thesame" class="invalid"></td>
+				    </tr>
+				    <tr>
+				        <td>Puste pole</td>
+				        <td><p id="empty" class="invalid"></td>
+				    </tr>
+		    </tbody>
+		</table>
+	
+	</div>	
+</div>
 
 </body>
 </html>
