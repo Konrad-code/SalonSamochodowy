@@ -90,7 +90,7 @@ public class MenuSalonSamochodowyController {
 		int dlugoscWypozyczenia = Integer.parseInt(days);
 		CustomerDAO customer = (CustomerDAO)session.getAttribute("customer");
 		if(dlugoscWypozyczenia < 1 && customer.isRoot())
-			return "menu_zalogowanyAdmin";
+			return "admin/menu_zalogowanyAdmin";
 		else if(dlugoscWypozyczenia < 1)
 			return "menu_zalogowanyCustomer";
 		int id_car = (int)session.getAttribute("id_car");
@@ -108,7 +108,7 @@ public class MenuSalonSamochodowyController {
 					if(ifSuccessfully) {
 						ifSuccessfully = customer.addTransaction(id_customer, id_car);
 						if(ifSuccessfully && customer.isRoot())
-							return "menu_zalogowanyAdmin";
+							return "admin/menu_zalogowanyAdmin";
 						else if(ifSuccessfully)
 							return "menu_zalogowanyCustomer";
 						else
@@ -121,9 +121,9 @@ public class MenuSalonSamochodowyController {
 				System.out.println("Someone managed to rent car before You");
 		}
 		if(!customer.isRoot())
-			return "errorRent";
+			return "errors/errorRent";
 		else
-			return "error";
+			return "errors/errorRentAdmin";
 	}
 	
 	

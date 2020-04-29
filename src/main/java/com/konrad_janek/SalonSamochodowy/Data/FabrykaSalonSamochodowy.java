@@ -80,7 +80,7 @@ public class FabrykaSalonSamochodowy extends ConnectDatabase implements IFabryka
 		if(date != null)
 			dataWypozyczenia = date.toLocalDate();
 //		LocalDate dataWypozyczenia = result.getDate("dataWypozyczenia").toLocalDate();
-		Samochod dawcaSamochod = new Samochod(id_car, model, cena, kaucja, dataWypozyczenia, dlugoscWypozyczenia);
+		Samochod dawcaSamochod = new Samochod(id_car, model, marka, cena, kaucja, dataWypozyczenia, dlugoscWypozyczenia);
 //		Samochod dawcaSamochod = new Samochod(marka, model, cena, kaucja, id_car);
 		
 		return dawcaSamochod;	

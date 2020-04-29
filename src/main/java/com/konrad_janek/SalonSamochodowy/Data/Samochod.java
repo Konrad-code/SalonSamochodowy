@@ -34,9 +34,10 @@ public class Samochod {
 		this.id_car = id_car;
 	}
 	
-	public Samochod(int id_car, String model, int cena, int kaucja, LocalDate dataWypozyczenia, int dlugoscWypozyczenia) {
+	public Samochod(int id_car, String marka, String model, int cena, int kaucja, LocalDate dataWypozyczenia, int dlugoscWypozyczenia) {
 		// FOR TRANSACTION PURPOSE
 		this.model = model;
+		this.marka = marka;
 		this.cena = cena;
 		this.kaucja = kaucja;
 		this.id_car = id_car;
