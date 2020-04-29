@@ -148,16 +148,16 @@ public abstract class CRUD extends ConnectDatabase implements ICRUD {
 	}
 	
 	@Override
-	public boolean obciazKonto(int id_customer, int transactionBill) {
+	public boolean obciazKonto(int id_customer, int afterTransactionBill) {
 		PreparedStatement updateSaldoStatement = null;
 		loadConnection();
 		boolean ifBilledAccount = false;
 		
 		try {
 			updateSaldoStatement = connection.prepareStatement("UPDATE customer SET saldo=? WHERE id_customer=?;");
-			updateSaldoStatement.setInt(1, transactionBill);
+			updateSaldoStatement.setInt(1, afterTransactionBill);
 			updateSaldoStatement.setInt(2, id_customer);
-			System.out.println("Executing query `updatesaldo`('" + transactionBill + "')");
+			System.out.println("Executing query `updatesaldo`('" + afterTransactionBill + "')");
 			boolean ifSuccessfulUpdateToDb = updateSaldoStatement.execute();
 			if(ifSuccessfulUpdateToDb) {
 				System.out.println("Query `updatesaldo` executed successfully");

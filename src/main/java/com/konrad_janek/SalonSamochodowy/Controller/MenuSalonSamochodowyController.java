@@ -96,11 +96,13 @@ public class MenuSalonSamochodowyController {
 		int id_car = (int)session.getAttribute("id_car");
 		Samochod car = FabrykaSalonSamochodowy.getInstance().wczytajSamochod(id_car);
 		int transactionBill = car.getKaucja() + (dlugoscWypozyczenia * car.getCena());
-		if(customer.getSaldo() > 0 && transactionBill < customer.getSaldo()) {
-			int id_customer = customer.getId_customer(customer.getLogin()); 	// when NICK added for user - change to nick verification credentials
+		int id_customer = customer.getId_customer(customer.getLogin()); 	// when NICK added for user - change to nick verification credentials
+		int saldo = customer.getSaldo(id_customer);
+		int billAfterTransaction = saldo - transactionBill;
+		if(saldo > 0 && transactionBill < saldo) {
 			boolean ifSuccessfully = customer.checkIfCarFree(id_car);
 			if(ifSuccessfully) {
-				ifSuccessfully = customer.obciazKonto(id_customer, transactionBill);
+				ifSuccessfully = customer.obciazKonto(id_customer, billAfterTransaction);
 				if(ifSuccessfully) {
 					ifSuccessfully = customer.rentACar(id_customer, id_car, dlugoscWypozyczenia);
 					if(ifSuccessfully) {

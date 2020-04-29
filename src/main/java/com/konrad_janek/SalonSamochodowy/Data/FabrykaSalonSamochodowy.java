@@ -75,9 +75,14 @@ public class FabrykaSalonSamochodowy extends ConnectDatabase implements IFabryka
 		int kaucja = result.getInt("kaucja");
 		int id_car = result.getInt("id_car");
 		int dlugoscWypozyczenia = result.getInt("dlugoscWypozyczenia");
-		LocalDate dataWypozyczenia = result.getDate("dataWypozyczenia").toLocalDate();
-		
+		LocalDate dataWypozyczenia = null;
+		java.sql.Date date= result.getDate("dataWypozyczenia");
+		if(date != null)
+			dataWypozyczenia = date.toLocalDate();
+//		LocalDate dataWypozyczenia = result.getDate("dataWypozyczenia").toLocalDate();
 		Samochod dawcaSamochod = new Samochod(id_car, model, cena, kaucja, dataWypozyczenia, dlugoscWypozyczenia);
+//		Samochod dawcaSamochod = new Samochod(marka, model, cena, kaucja, id_car);
+		
 		return dawcaSamochod;	
 	}
 	
