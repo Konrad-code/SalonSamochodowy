@@ -51,6 +51,7 @@ public class FabrykaSalonSamochodowy extends ConnectDatabase implements IFabryka
 	}
 	
 	public FabrykaSalonSamochodowy(boolean ifShowAll) {					// DOSTEPNE AUTA CONSTRUCTOR
+		listaSamochody.clear();   						// try to get refreshing menu
 		listaSamochody.addAll(wczytajSamochody());
 		wypiszSamochody();
 	}

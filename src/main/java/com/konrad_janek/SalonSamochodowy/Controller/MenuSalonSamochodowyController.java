@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.konrad_janek.SalonSamochodowy.Accounts.CustomerDAO;
 import com.konrad_janek.SalonSamochodowy.Data.FabrykaSalonSamochodowy;
+import com.konrad_janek.SalonSamochodowy.Data.FabrykaTransakcji;
 import com.konrad_janek.SalonSamochodowy.Data.Samochod;
 
 @Controller
@@ -107,11 +108,14 @@ public class MenuSalonSamochodowyController {
 					ifSuccessfully = customer.rentACar(id_customer, id_car, dlugoscWypozyczenia);
 					if(ifSuccessfully) {
 						ifSuccessfully = customer.addTransaction(id_customer, id_car);
-						if(ifSuccessfully && customer.isRoot())
-							return "admin/menu_zalogowanyAdmin";
-						else if(ifSuccessfully)
-							return "menu_zalogowanyCustomer";
-						else
+						if(ifSuccessfully) {
+							FabrykaSalonSamochodowy newFabrykaSalonSamochodowy = new FabrykaSalonSamochodowy(true);
+							model.addAttribute("dostepneSamochody", newFabrykaSalonSamochodowy.getListaSamochody());
+							if(customer.isRoot())
+								return "admin/menu_zalogowanyAdmin";
+							else
+								return "menu_zalogowanyCustomer";
+						} else
 							System.out.println("Failed to store transaction in system. Contact with company service");
 					} else
 						System.out.println("Failed to rent a car, contact with service to get Your money back");
