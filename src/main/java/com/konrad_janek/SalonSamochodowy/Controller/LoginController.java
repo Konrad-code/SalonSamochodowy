@@ -47,11 +47,11 @@ public class LoginController {
             System.out.println("If username managed to log in successfully: " + ifLoggedSuccessfully);
             if(customer.isRoot()) {
             	System.out.println("Admin has been logged successfully!\nWelcome " + customer.getLogin());
-            	return "admin/menu_zalogowanyAdmin";
+            	return "admin/glowna_zalogowanyAdmin";
             }
             if(ifLoggedSuccessfully){
                 System.out.println("You've been logged successfully!\nWelcome " + customer.getLogin());
-                return "menu_zalogowanyCustomer";
+                return "glowna_zalogowanyCustomer";
 //                DOPISAC JS KOMUNIKAT - KOPIA Z POWYZSZEGO System.out.println
             }
             else {
