@@ -25,16 +25,19 @@ FabrykaTransakcji fabrykaTransakcji = new FabrykaTransakcji();
 		System.out.println("Login customer: " + customer.getLogin());
 		System.out.println("ID CUSTOMER: " + id_customer);
 		// wywolaj na fabrycetransakcji metode wypelniajaca z parametrem (id_customer)
-		fabrykaTransakcji.wczytajTransakcjeZwrotCustomer(id_customer);
-		model.addAttribute("zwroty", fabrykaTransakcji.getListaTransakcjiCustomer());
+		FabrykaTransakcji fabrykaTransakcjiUser = new FabrykaTransakcji(id_customer);
+		fabrykaTransakcjiUser.wczytajTransakcjeZwrotCustomer(id_customer);
+		model.addAttribute("zwroty", fabrykaTransakcjiUser.getListaTransakcjiCustomer());
+		if(customer.isRoot())
+			return "admin/autaUzytkownikaAdmin";
 		return "autaUzytkownika";
 	}
 	
 	@GetMapping("/zwroc")		// TODO
 	public String zwroc(@ModelAttribute CustomerDAO customer,
-						  @ModelAttribute CustomerDAO cleanCustomer,
-						  @RequestParam("id_car") int id_car,
-						  Model model) {
+						@ModelAttribute CustomerDAO cleanCustomer,
+						@RequestParam("id_car") int id_car,
+						Model model) {
 		System.out.println("Entered @GetMapping `zwroc` ");
 		System.out.println("Customer: " + customer.getLogin() + " | Clean customer: " + cleanCustomer.getLogin());
 		

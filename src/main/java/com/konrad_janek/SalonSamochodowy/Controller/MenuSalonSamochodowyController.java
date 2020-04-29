@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.konrad_janek.SalonSamochodowy.Accounts.CustomerDAO;
 import com.konrad_janek.SalonSamochodowy.Data.FabrykaSalonSamochodowy;
@@ -34,8 +35,10 @@ public class MenuSalonSamochodowyController {
 	
 	@GetMapping("/menu_zalogowanyAdmin")
 	public String menu_zalogowanyAdmin(Model model, HttpSession session) {
-		model.addAttribute("dostepneSamochody", fabrykaSalonSamochodowy.getListaSamochody());
 		CustomerDAO customer = (CustomerDAO)session.getAttribute("customer");
+		if(!customer.isRoot())
+			return "logout";
+		model.addAttribute("dostepneSamochody", fabrykaSalonSamochodowy.getListaSamochody());
 		System.out.println("Login of Admin customer entering menu_zalogowanyAdmin: " + customer.getLogin());
 		return "admin/menu_zalogowanyAdmin";
 	}
@@ -58,8 +61,10 @@ public class MenuSalonSamochodowyController {
 	
 	@GetMapping("/menu_zalogowanyAdminWszystkie")
 	public String menu_zalogowanyAdminWszystkie(Model model, HttpSession session) {
-		model.addAttribute("wszystkieSamochody", fabrykaWszystkichAut.getListaWszystkieSamochody());
 		CustomerDAO customer = (CustomerDAO)session.getAttribute("customer");
+		if(!customer.isRoot())
+			return "logout";
+		model.addAttribute("wszystkieSamochody", fabrykaWszystkichAut.getListaWszystkieSamochody());
 		System.out.println("Login of Admin customer entering menu_zalogowanyAdminWszystkie: " + customer.getLogin());
 		return "admin/menu_zalogowanyAdminWszystkie";
 	}

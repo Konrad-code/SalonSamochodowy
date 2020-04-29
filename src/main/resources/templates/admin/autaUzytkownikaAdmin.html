@@ -16,8 +16,8 @@
     <a href="glowna_zalogowanyAdmin">O nas</a>
     <a href="menu_zalogowanyAdmin">Dostepne auta</a>
     <a href="menu_zalogowanyAdminWszystkie">Flota salonu</a>
-    <a href="autaUzytkownikaAdmin">Zwróć auta</a>
-    <a href="adminPanel">Admin panel</a></div>
+    <a href="autaUzytkownika">Zwróć auta</a>
+    <a href="adminPanel">Admin panel</a>
     <a href="logout">Wyloguj się</a>
     
 </div>
@@ -55,7 +55,7 @@
 					<td><span th:text="${transakcja.car_kaucja}">car_kaucja</span></td>
 					<td><span th:text="${transakcja.car_dataWypozyczenia}">car_dataWypozyczenia</span></td>
 					<td><span th:text="${transakcja.car_dlugoscWypozyczenia}">car_dlugoscWypozyczenia</span></td>
-					<td><a th:href="@{/zwroc(id_car=${car.id_car})}">zwroc</a></td>
+					<td><a th:href="@{/zwroc(id_car=${transakcja.car_id})}">zwroc</a></td>
 				</tr>
 		</tbody>
 	</table>

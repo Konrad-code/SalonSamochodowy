@@ -16,20 +16,19 @@ public class FabrykaTransakcji extends ConnectDatabase implements IFabrykaTransa
 
 	private static ArrayList<TransakcjaDAO> listaTransakcji = new ArrayList<TransakcjaDAO>();		// ADMIN ALL
 	private static ArrayList<TransakcjaDAO> listaTransakcjiZwrot = new ArrayList<TransakcjaDAO>();	// ADMIN TO ACCEPT
-	private ArrayList<Transakcja> listaTransakcjiCustomer;											// CUSTOMER
+	private ArrayList<Transakcja> listaTransakcjiCustomer = new ArrayList<Transakcja>();											// CUSTOMER
 	
 	public FabrykaTransakcji() {	// SPECIAL FOR AutaUzytkownikaController
 	}
 	
 	public FabrykaTransakcji(int id_customer) {							// CUSTOMER
-		List<TransakcjaDAO> list = wczytajTransakcjeZwrotCustomer(id_customer);
+		List<TransakcjaDAO> list = new ArrayList<TransakcjaDAO>();
+		list.addAll(wczytajTransakcjeZwrotCustomer(id_customer));
+		System.out.println(list.size());
 		ArrayList<Transakcja> listaCustomera = new ArrayList<Transakcja>();
-		// TRANSLACJA
-		for (TransakcjaDAO transakcja : list) {
+		for (TransakcjaDAO transakcja : list)					// TRANSLACJA
 			listaCustomera.add(new Transakcja(transakcja));
-		}
-		// ZAPIS DO listaTransakcjiCustomer
-		listaTransakcjiCustomer.addAll(listaCustomera);
+		listaTransakcjiCustomer.addAll(listaCustomera);			// ZAPIS DO listaTransakcjiCustomer
 	}
 	
 	public FabrykaTransakcji(boolean listaTransakcjiZwrotFlag) {
@@ -59,7 +58,7 @@ public class FabrykaTransakcji extends ConnectDatabase implements IFabrykaTransa
 	@Override
 	public TransakcjaDAO zmienRekordNaTransakcje(ResultSet result) throws SQLException {
 		LocalDate dataOddania = null;
-		int id_transakcja = result.getInt("id_transakcja");
+		int id_transakcja = result.getInt("id_transaction");
 		if(result.getDate("dataOddania") != null)
 			dataOddania = result.getDate("dataOddania").toLocalDate();
 		int customer_id = result.getInt("customer_id");
@@ -80,7 +79,7 @@ public class FabrykaTransakcji extends ConnectDatabase implements IFabrykaTransa
 		ResultSet results = null;
 		
 		try {
-			wczytajStatement = connection.prepareStatement("SELECT * FROM transakcja ORDER BY id_transakcja");
+			wczytajStatement = connection.prepareStatement("SELECT * FROM transaction ORDER BY id_transakcja");
 			results = wczytajStatement.executeQuery();
 			while(results.next()) {
 				TransakcjaDAO dawcaTransakcja = zmienRekordNaTransakcje(results);
@@ -105,7 +104,7 @@ public class FabrykaTransakcji extends ConnectDatabase implements IFabrykaTransa
 		ResultSet results = null;
 		
 		try {
-			wczytajStatement = connection.prepareStatement("SELECT * FROM transakcja WHERE zatwierdzona=FALSE ORDER BY id_transakcja");
+			wczytajStatement = connection.prepareStatement("SELECT * FROM transaction WHERE zatwierdzona=FALSE ORDER BY id_transakcja");
 			results = wczytajStatement.executeQuery();
 			while(results.next()) {
 				TransakcjaDAO dawcaTransakcja = zmienRekordNaTransakcje(results);
@@ -130,8 +129,9 @@ public class FabrykaTransakcji extends ConnectDatabase implements IFabrykaTransa
 		ResultSet results = null;
 		
 		try {
-			wczytajStatement = connection.prepareStatement("SELECT * FROM transakcja WHERE customer_id=? "
-					+ "AND zatwierdzona=FALSE ORDER BY (DATEDIFF(day, dataWypozyczenia, CURRENT_DATE) - dlugoscWypozyczenia) DESC");	// previously "ORDER BY id_transakcja"
+			wczytajStatement = connection.prepareStatement("SELECT * FROM transaction WHERE customer_id=? "
+					+ "AND zatwierdzona=FALSE ORDER BY id_transaction");	// previously "ORDER BY (DATEDIFF(day, dataWypozyczenia, CURRENT_DATE) - dlugoscWypozyczenia) DESC"
+			wczytajStatement.setInt(1, id_customer);
 			results = wczytajStatement.executeQuery();
 			while(results.next()) {
 				TransakcjaDAO dawcaTransakcja = zmienRekordNaTransakcje(results);

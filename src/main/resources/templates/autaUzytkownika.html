@@ -54,7 +54,7 @@
 					<td><span th:text="${transakcja.car_kaucja}">car_kaucja</span></td>
 					<td><span th:text="${transakcja.car_dataWypozyczenia}">car_dataWypozyczenia</span></td>
 					<td><span th:text="${transakcja.car_dlugoscWypozyczenia}">car_dlugoscWypozyczenia</span></td>
-					<td><a th:href="@{/zwroc(id_car=${car.id_car})}">zwroc</a></td>
+					<td><a th:href="@{/zwroc(id_car=${transakcja.car_id})}">zwroc</a></td>
 				</tr>
 		</tbody>
 	</table>
