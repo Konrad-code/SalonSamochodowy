@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.konrad_janek.SalonSamochodowy.Accounts.CustomerDAO;
+import com.konrad_janek.SalonSamochodowy.Data.FabrykaSalonSamochodowy;
 import com.konrad_janek.SalonSamochodowy.Data.FabrykaTransakcji;
+import com.konrad_janek.SalonSamochodowy.Data.Samochod;
 
 @Controller
 public class AutaUzytkownikaController {
@@ -50,13 +52,46 @@ FabrykaTransakcji fabrykaTransakcji = new FabrykaTransakcji();
 									// z request parametru dla tego zapytania bedzie sie pokrywal z jakims na (uprzednio zrobionej 
 									// i wertowanej teraz) liscie. Potem sprawdzenie flagi i dopiero metoda wypozyczenia dalsza.
 									// rowniez nalezy dodac do ustawiania flagi sprawdzenie czy customer.getLogin().length() > 0; - czy zalogowany
-	public String zwrocPost(Model model, @ModelAttribute CustomerDAO customer) {
+	public String zwrocPost(HttpSession session, Model model, @RequestParam("days") String days) {
 		
 		System.out.println("Entered @PostMapping `zwrocPost` ");
-//		if(true)
-//			return "menu";
-//		else
-//			return "login";
+			int dlugoscWypozyczenia = Integer.parseInt(days);
+			CustomerDAO customer = (CustomerDAO)session.getAttribute("customer");
+			if(dlugoscWypozyczenia < 1 && customer.isRoot())
+				return "admin/menu_zalogowanyAdmin";
+			else if(dlugoscWypozyczenia < 1)
+				return "menu_zalogowanyCustomer";
+			int id_car = (int)session.getAttribute("id_car");
+			Samochod car = FabrykaSalonSamochodowy.getInstance().wczytajSamochod(id_car);
+			int transactionBill = car.getKaucja() + (dlugoscWypozyczenia * car.getCena());
+			int id_customer = customer.getId_customer(customer.getLogin()); 	// when NICK added for user - change to nick verification credentials
+			int saldo = customer.getSaldo(id_customer);
+			int billAfterTransaction = saldo - transactionBill;
+			if(saldo > 0 && transactionBill < saldo) {
+				boolean ifSuccessfully = customer.checkIfCarFree(id_car);
+				if(ifSuccessfully) {
+					ifSuccessfully = customer.obciazKonto(id_customer, billAfterTransaction);
+					if(ifSuccessfully) {
+						ifSuccessfully = customer.rentACar(id_customer, id_car, dlugoscWypozyczenia);
+						if(ifSuccessfully) {
+							ifSuccessfully = customer.addTransaction(id_customer, id_car);
+							if(ifSuccessfully && customer.isRoot())
+								return "admin/menu_zalogowanyAdmin";
+							else if(ifSuccessfully)
+								return "menu_zalogowanyCustomer";
+							else
+								System.out.println("Failed to store transaction in system. Contact with company service");
+						} else
+							System.out.println("Failed to rent a car, contact with service to get Your money back");
+					} else
+						System.out.println("Failed to bill account");
+				} else
+					System.out.println("Someone managed to rent car before You");
+			}
+			if(!customer.isRoot())
+				return "errors/errorRent";
+			else
+				return "errors/errorRentAdmin";
 		return "autaUzytkownika";
 	}
 }

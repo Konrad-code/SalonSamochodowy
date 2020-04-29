@@ -85,7 +85,7 @@ public class MenuSalonSamochodowyController {
 			return "errors/errorRent";
 	}
 	
-	@GetMapping("/rent()")		// TODO - okodowac wypozyczenie 
+	@PostMapping("/rentCar")
 	public String wypozycz(HttpSession session, Model model, @RequestParam("days") String days) {
 		int dlugoscWypozyczenia = Integer.parseInt(days);
 		CustomerDAO customer = (CustomerDAO)session.getAttribute("customer");

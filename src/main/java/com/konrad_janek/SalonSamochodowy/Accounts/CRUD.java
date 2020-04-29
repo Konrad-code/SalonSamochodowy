@@ -55,11 +55,12 @@ public abstract class CRUD extends ConnectDatabase implements ICRUD {
 			// MAY COMMENT IN FUTURE
 			System.out.println("Calling query `addCustomer`('" + newCustomer.getLogin() + "', '" 
 								+ newCustomer.getPassword() + "', '" + newCustomer.getDowod() + "')");
-			boolean ifSuccessfully = addCustomerStatement.execute();
-			if(ifSuccessfully) {
+			int ifSuccessfully = addCustomerStatement.executeUpdate();
+			if(ifSuccessfully > 0) {
 				System.out.println("Query `addCustomer` called successfully");
 				ifCustomerAdded = true;
-			}
+			} else
+				System.out.println("0 users inserted. `addCustomer` operation failed");
 		} catch (SQLException e) {
 			System.err.println("Failed to execute query `addCustomer` at database: " + e.getMessage());
 		} finally {
@@ -81,11 +82,12 @@ public abstract class CRUD extends ConnectDatabase implements ICRUD {
 			addTransactionStatement.setInt(2, id_car);
 			// MAY COMMENT IN FUTURE
 			System.out.println("Calling query `addTransaction`(" + id_customer + ", " + id_car);
-			boolean ifSuccessfully = addTransactionStatement.execute();
-			if(ifSuccessfully) {
+			int ifSuccessfully = addTransactionStatement.executeUpdate();
+			if(ifSuccessfully > 0) {
 				System.out.println("Query `addTransaction` called successfully");
 				ifTransactionAdded = true;
-			}
+			} else
+				System.out.println("0 transactions inserted. `addTransaction` operation failed");
 		} catch (SQLException e) {
 			System.err.println("Failed to execute query `addTransaction` at database: " + e.getMessage());
 		} finally {
@@ -154,15 +156,16 @@ public abstract class CRUD extends ConnectDatabase implements ICRUD {
 		boolean ifBilledAccount = false;
 		
 		try {
-			updateSaldoStatement = connection.prepareStatement("UPDATE customer SET saldo=? WHERE id_customer=?;");
+			updateSaldoStatement = connection.prepareStatement("UPDATE customer SET saldo=? WHERE id_customer=?");
 			updateSaldoStatement.setInt(1, afterTransactionBill);
 			updateSaldoStatement.setInt(2, id_customer);
 			System.out.println("Executing query `updatesaldo`('" + afterTransactionBill + "')");
-			boolean ifSuccessfulUpdateToDb = updateSaldoStatement.execute();
-			if(ifSuccessfulUpdateToDb) {
+			int ifSuccessfulUpdateToDb = updateSaldoStatement.executeUpdate();
+			if(ifSuccessfulUpdateToDb > 0) {
 				System.out.println("Query `updatesaldo` executed successfully");
 				ifBilledAccount = true;
-			}
+			}else
+				System.out.println("Query updating bill gave negative result - failed to bill account in database");
 		} catch (SQLException e) {
 			System.err.println("Failed to execute query `updatesaldo` at database: " + e.getMessage());
 		} finally {

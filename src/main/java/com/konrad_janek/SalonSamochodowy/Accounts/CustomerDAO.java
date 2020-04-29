@@ -104,11 +104,12 @@ public class CustomerDAO extends CRUD {
 			carRentialStatement.setInt(2, dlugoscWypozyczenia);
 			carRentialStatement.setInt(3, id_car);
 			System.out.println("Executing query `rentacar`(" + id_customer + ", " + id_car + ", " + dlugoscWypozyczenia + ")");
-			boolean ifSuccessfulUpdateToDb = carRentialStatement.execute();
-			if(ifSuccessfulUpdateToDb) {
+			int ifSuccessfulUpdateToDb = carRentialStatement.executeUpdate();
+			if(ifSuccessfulUpdateToDb > 0) {
 				System.out.println("Query `rentacar` executed successfully");
 				ifReservedCar = true;
-			}
+			} else
+				System.out.println("Failed to execute `rentacar` query");
 		} catch (SQLException e) {
 			System.err.println("Failed to execute query `rentacar` at database: " + e.getMessage());
 		} finally {
