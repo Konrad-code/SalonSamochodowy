@@ -129,8 +129,8 @@ public class FabrykaTransakcji extends ConnectDatabase implements IFabrykaTransa
 		ResultSet results = null;
 		
 		try {
-			wczytajStatement = connection.prepareStatement("SELECT * FROM transaction WHERE customer_id=? "
-					+ "AND zatwierdzona=FALSE ORDER BY id_transaction");	// previously "ORDER BY (DATEDIFF(day, dataWypozyczenia, CURRENT_DATE) - dlugoscWypozyczenia) DESC"
+			wczytajStatement = connection.prepareStatement("SELECT * FROM transaction WHERE (customer_id=? "
+					+ "AND zatwierdzona=FALSE AND dataOddania IS NULL) ORDER BY id_transaction");	// previously "ORDER BY (DATEDIFF(day, dataWypozyczenia, CURRENT_DATE) - dlugoscWypozyczenia) DESC"
 			wczytajStatement.setInt(1, id_customer);
 			results = wczytajStatement.executeQuery();
 			while(results.next()) {

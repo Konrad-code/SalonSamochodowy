@@ -35,15 +35,28 @@ FabrykaTransakcji fabrykaTransakcji = new FabrykaTransakcji();
 		return "autaUzytkownika";
 	}
 	
-	@GetMapping("/zwroc")		// TODO
-	public String zwroc(@ModelAttribute CustomerDAO customer,
-						@ModelAttribute CustomerDAO cleanCustomer,
-						@RequestParam("id_car") int id_car,
+	@GetMapping("/zwroc")
+	public String zwroc(@RequestParam("id_transaction") int id_transaction,
+						HttpSession session,
 						Model model) {
+		CustomerDAO customer = (CustomerDAO)session.getAttribute("customer");
 		System.out.println("Entered @GetMapping `zwroc` ");
-		System.out.println("Customer: " + customer.getLogin() + " | Clean customer: " + cleanCustomer.getLogin());
-		
-		return "costam";
+		System.out.println("Customer: " + customer.getLogin() + " | ID of transaction: " + id_transaction);
+		int id_customer = customer.getId_customer(customer.getLogin());
+		boolean ifSuccessfully = customer.returnACarFromTransaction(id_transaction);
+		if(ifSuccessfully) {
+			FabrykaTransakcji fabrykaTransakcjiUser = new FabrykaTransakcji(id_customer);
+			fabrykaTransakcjiUser.wczytajTransakcjeZwrotCustomer(id_customer);
+			model.addAttribute("zwroty", fabrykaTransakcjiUser.getListaTransakcjiCustomer());
+			if(customer.isRoot())
+				return "admin/autaUzytkownikaAdmin";
+			return "autaUzytkownika";
+		} else
+			System.out.println("Failed to return car from this transaction No: " + id_transaction);
+		if(!customer.isRoot())
+			return "errors/errorReturn";
+		else
+			return "errors/errorReturnAdmin";
 	}
 
 	@PostMapping("/zwrocPost")		// TODO - okodowac wypozyczenie (przede wszystkim w uzaleznieniu czy auto nie jest wypozyczone. 
@@ -92,6 +105,21 @@ FabrykaTransakcji fabrykaTransakcji = new FabrykaTransakcji();
 				return "errors/errorRent";
 			else
 				return "errors/errorRentAdmin";
-		return "autaUzytkownika";
+//		return "autaUzytkownika";
 	}
+	
+	@GetMapping("/errorReturn")
+	public String errorReturn() {
+		return "errors/errorReturn";
+	}
+	
+	@GetMapping("/errorReturnAdmin")
+	public String errorReturnAdmin(HttpSession session) {
+		CustomerDAO customer = (CustomerDAO)session.getAttribute("customer");
+		if(customer.isRoot())
+			return "errors/errorReturnAdmin";
+		else
+			return "errors/errorReturn";
+	}
+	
 }

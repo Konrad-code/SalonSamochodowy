@@ -69,34 +69,7 @@ public abstract class CRUD extends ConnectDatabase implements ICRUD {
 		}
 		return ifCustomerAdded;
 	}
-	
-	@Override
-	public boolean addTransaction(int id_customer, int id_car) {
-		loadConnection();
-		PreparedStatement addTransactionStatement = null;
-		boolean ifTransactionAdded = false;
 		
-		try {
-			addTransactionStatement = connection.prepareStatement("INSERT INTO transaction (customer_id, car_id) VALUES(?,?)");
-			addTransactionStatement.setInt(1, id_customer);
-			addTransactionStatement.setInt(2, id_car);
-			// MAY COMMENT IN FUTURE
-			System.out.println("Calling query `addTransaction`(" + id_customer + ", " + id_car);
-			int ifSuccessfully = addTransactionStatement.executeUpdate();
-			if(ifSuccessfully > 0) {
-				System.out.println("Query `addTransaction` called successfully");
-				ifTransactionAdded = true;
-			} else
-				System.out.println("0 transactions inserted. `addTransaction` operation failed");
-		} catch (SQLException e) {
-			System.err.println("Failed to execute query `addTransaction` at database: " + e.getMessage());
-		} finally {
-			try { addTransactionStatement.close(); } catch (Exception e) { /* leave action */ }
-			closeConnection();
-		}
-		return ifTransactionAdded;
-	}
-	
 	@Override
 	public int getSaldo(int id_customer) {
 		loadConnection();
@@ -225,32 +198,6 @@ public abstract class CRUD extends ConnectDatabase implements ICRUD {
 			closeConnection();
 		}
 		return dowodFree;
-	}
-	
-	@Override
-	public boolean checkIfCarFree(int id_car) {
-		loadConnection();
-		PreparedStatement checkCarFreeStatement = null;
-		ResultSet rs = null;
-		boolean carFree = false;
-		
-		try {
-			checkCarFreeStatement = connection.prepareStatement("SELECT * FROM car WHERE (id_car=? AND dlugoscWypozyczenia=0 AND customer_id IS NULL);");
-			checkCarFreeStatement.setInt(1, id_car);
-			System.out.println("Executing query `checkIfCarFree`('" + id_car + "')");
-			rs = checkCarFreeStatement.executeQuery();
-			if(rs.next()) {
-				System.out.println("Query `checkIfCarFree` called successfully so it means that car is free to rent");
-				carFree = true;
-			}
-		} catch (SQLException e) {
-			System.err.println("Failed to execute query `checkIfCarFree` at database: " + e.getMessage());
-		} finally {
-			try { rs.close(); } catch (Exception e) { /* leave action */ }
-			try { checkCarFreeStatement.close(); } catch (Exception e) { /* leave action */ }
-			closeConnection();
-		}
-		return carFree;
 	}
 	
 	@Override

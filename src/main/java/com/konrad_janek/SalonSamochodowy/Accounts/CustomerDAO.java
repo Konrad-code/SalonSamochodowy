@@ -4,14 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.context.annotation.RequestScope;
-
-
-public class CustomerDAO extends CRUD {
+public class CustomerDAO extends Actions {
 	
 	{
 		Login = "";
@@ -91,38 +84,5 @@ public class CustomerDAO extends CRUD {
 			closeConnection();
 		}
 		return ifSuccessfullyLogged;
-	}	
-
-	public boolean rentACar(int id_customer, int id_car, int dlugoscWypozyczenia) {
-		PreparedStatement carRentialStatement = null;
-		loadConnection();
-		boolean ifReservedCar = false;
-		
-		try {
-			carRentialStatement = connection.prepareStatement("UPDATE car SET customer_id=?, dlugoscWypozyczenia=?, dataWypozyczenia=CURRENT_DATE WHERE id_car=?;");
-			carRentialStatement.setInt(1, id_customer);
-			carRentialStatement.setInt(2, dlugoscWypozyczenia);
-			carRentialStatement.setInt(3, id_car);
-			System.out.println("Executing query `rentacar`(" + id_customer + ", " + id_car + ", " + dlugoscWypozyczenia + ")");
-			int ifSuccessfulUpdateToDb = carRentialStatement.executeUpdate();
-			if(ifSuccessfulUpdateToDb > 0) {
-				System.out.println("Query `rentacar` executed successfully");
-				ifReservedCar = true;
-			} else
-				System.out.println("Failed to execute `rentacar` query");
-		} catch (SQLException e) {
-			System.err.println("Failed to execute query `rentacar` at database: " + e.getMessage());
-		} finally {
-			try { carRentialStatement.close(); } catch (Exception e) { /* leave action */ }
-			closeConnection();
-		}
-		return ifReservedCar;
 	}
-
-
-
-
-
-
-
 }
