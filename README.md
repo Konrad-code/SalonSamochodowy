@@ -1,3 +1,6 @@
+# WEB car rental service
+Project has been developed with partial usage of pair programming technique and is implementing full CRUD functionality for registering and login customers with separate admin privileges and menus. Customers are allowed to see rental offer of 20 exemplary cars (pages with photos and car specification). Customer can rent chosen vehicle for given period if they have sufficient funds or return the car. Admin accepts checkout of transaction. He also manages customers’ accounts and transactions.
+
 # SalonSamochodowy
 Projekt WEB wypożyczalni samochodów
 
